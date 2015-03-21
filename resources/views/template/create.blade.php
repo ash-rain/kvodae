@@ -2,7 +2,7 @@
 
 @section('title', 'Create Template')
 
-@include('shared.price')
+@include('shared.number')
 
 @section('content')
 
@@ -16,7 +16,7 @@
 
 	<label>
 		{{ trans('Price') }}
-		<input type="text" name="price" value="{{ old('price') }}" required />
+		<input type="number" name="price" value="{{ old('price') }}" required />
 	</label>
 
 	<button type="submit">{{ trans('Create') }}</button>

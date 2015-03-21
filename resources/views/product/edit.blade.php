@@ -2,25 +2,39 @@
 
 @section('title', 'Edit Product')
 
-@include('shared.price')
+@include('shared.number')
 
 @section('js')
 var drawConfig = {!! $product->template->draw_data !!}
 var canvas = $("canvas")[0]
 
-$("#image").hide()
-drawText()
+$("#image img").load(function(){
+	$("#image").hide()
+	drawText()
+})
 
 $("input[name='text']")
 	.keyup(drawText)
-	.change(function() {
-		var data = canvas.toDataURL()
-		$.post("{{ action('ImageController@store') }}", {
-			"data": data,
-			"imageable_id": {{ $product->id }},
-			"_token": "{{ csrf_token() }}"
-		})
+
+$("form").submit(function(e) {
+	e.preventDefault()
+	e.returnValue = false
+
+	var data = canvas.toDataURL()
+	var form = $(this)
+
+	$.ajax({
+		type: "post",
+		url: "{{ action('ImageController@store') }}",
+		data: { "data": data, "imageable_id": {{ $product->id }}, "_token": "{{ csrf_token() }}" },
+		context: form,
+		complete: function() {
+			this.unbind("submit");
+			this.submit()
+		}
 	})
+	return false
+})
 
 function drawText() {
 	var text = $("input[name='text']").val()
@@ -30,7 +44,7 @@ function drawText() {
 	context.drawImage($("#image img")[0] , 0, 0, canvas.width, canvas.height)
 	context.translate(drawConfig.x || 0, drawConfig.y || 10)
 	context.rotate( -Math.PI * drawConfig.rotate )
-	context.font = drawConfig.font || "16px sans-serif"
+	context.font = (drawConfig.font_size || 14) + "px " + (drawConfig.font || "sans-serif")
 	context.fontWeight = 700
 	context.fillStyle = drawConfig.fill || "#000000"
 	context.textAlign = drawConfig.align || "left"
@@ -42,7 +56,7 @@ function drawText() {
 
 @section('content')
 
-{!! Form::model($product, [ 'url' => action('ProductController@update'), 'method' => 'patch' ]) !!}
+{!! Form::model($product, [ 'url' => action('ProductController@update', $product->id), 'method' => 'patch' ]) !!}
 
 <input type="hidden" name="template_id" value="{{ $product->template_id }}" />
 
@@ -54,7 +68,18 @@ function drawText() {
 
 	<label>
 		{{ trans('Price') }}
-		{!! Form::text('price', null, ['required']) !!}
+
+		<div class="row collapse">
+			<div class="small-3 large-2 columns">
+				<span class="prefix">
+					{{ $product->template->price }}
+					<i class="fa fa-plus"></i>
+				</span>
+			</div>
+			<div class="small-9 large-10 columns">
+				{!! Form::text('price', null, ['required', 'type' => 'number']) !!}
+			</div>
+		</div>
 	</label>
 
 	<label>
@@ -68,7 +93,9 @@ function drawText() {
 
 <div class="medium-6 columns">
 
-	<canvas style="width: 100%; height: auto;"></canvas>
+	<div class="th" style="display: block;">
+		<canvas style="width: 100%;"></canvas>
+	</div>
 
 	<div id="image">
 		@include('image.show', ['image' => $product->template->images[0]])

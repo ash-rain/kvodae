@@ -11,7 +11,7 @@ class CreateInitialTables extends Migration {
 		{
 			$table->increments('id');
 			$table->string('name');
-			$table->float('price');
+			$table->float('price')->unsigned();
 			$table->string('draw_data', 200)->default('{}');
 		});
 
@@ -19,16 +19,16 @@ class CreateInitialTables extends Migration {
 		{
 			$table->increments('id');
 			$table->string('name');
-			$table->float('price')->nullable();
+			$table->float('price')->unsigned()->nullable();
 			$table->string('text')->nullable();
 			$table->integer('template_id')->unsigned();
+			$table->boolean('for_sale')->nullable();
 			$table->timestamps();
 		});
 
 		Schema::create('images', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->binary('data');
 			$table->smallInteger('width');
 			$table->smallInteger('height');
 			$table->string('type');

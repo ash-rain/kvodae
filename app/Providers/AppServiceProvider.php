@@ -11,7 +11,11 @@ class AppServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		//
+		\Blade::extend(function($view, $compiler)
+		{
+			$pattern = $compiler->createOpenMatcher('price');
+			return preg_replace($pattern, '$1\$<?php echo $2->finalPrice); ?>', $view);
+		});
 	}
 
 	/**

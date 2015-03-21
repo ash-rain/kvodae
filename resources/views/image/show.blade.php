@@ -1,1 +1,5 @@
-<img src="data:{{ $image->type }};base64,{{ $image->data }}" style="width: {{ $image->width }}; height: {{ $image->height }};" />
+@if(!is_null($image->data))
+<img src="{{ action('ImageController@show', $image->id) }}" />
+@else
+No image
+@endif

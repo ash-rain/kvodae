@@ -67,8 +67,11 @@
         </li>
       </ul>
       <ul class="left">
-        <li>
+        <li class="{{ Request::is('templates/*') ? 'active' : '' }}">
           <a href="{{ action('TemplateController@index') }}">{{ trans('Templates') }}</a>
+        </li>
+        <li class="{{ Request::is('products/*') ? 'active' : '' }}">
+          <a href="{{ action('ProductController@index') }}">{{ trans('Products') }}</a>
         </li>
       </ul>
     </section>

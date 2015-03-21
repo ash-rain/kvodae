@@ -37,12 +37,13 @@ class TemplateController extends Controller {
 	
 	public function edit(Template $template)
 	{
-		return view('template.edit', compact('template'));
+		$fonts = ['serif', 'sans-serif', 'Times New Roman', 'Arial'];
+		return view('template.edit', compact('template', 'fonts'));
 	}
 	
 	public function update(Request $request, Template $template)
 	{
-		$input = $request->only(['name', 'price']);
+		$input = $request->only(['name', 'price', 'draw_data']);
 		$template->fill($input);
 		$template->save();
 		return redirect(action('TemplateController@index'));

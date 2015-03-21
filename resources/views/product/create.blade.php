@@ -2,7 +2,7 @@
 
 @section('title', 'Create Product')
 
-@include('shared.price')
+@include('shared.number')
 
 @section('content')
 
@@ -18,7 +18,18 @@
 
 	<label>
 		{{ trans('Price') }}
-		<input type="text" name="price" value="{{ old('price') }}" required />
+
+		<div class="row collapse">
+			<div class="small-3 large-2 columns">
+				<span class="prefix">
+					{{ $template->price }}
+					<i class="fa fa-plus"></i>
+				</span>
+			</div>
+			<div class="small-9 large-10 columns">
+				<input type="number" name="price" value="{{ old('price') }}" />
+			</div>
+		</div>
 	</label>
 
 	<label>
@@ -26,6 +37,11 @@
 		<input type="text" name="text" value="{{ old('text') }}" required />
 	</label>
 
+	<label>
+		<input type="checkbox" checked />
+		{{ trans('For Sale') }}
+	</label>
+	
 	<button type="submit">{{ trans('Create') }}</button>
 </div>
 <div class="medium-6 columns">

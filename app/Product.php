@@ -14,4 +14,12 @@ class Product extends Model {
 		return $this->morphMany('App\Image', 'imageable');
 	}
 
+	public function getFinalPriceAttribute() {
+		return $this->template->price + $this->price;
+	}
+
+	public function setFinalPriceAttribute($price) {
+		$this->attributes['price'] = $price - $this->template->price;
+	}
+
 }
