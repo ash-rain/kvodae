@@ -1,0 +1,1 @@
+<img src="data:{{ $image->type }};base64,{{ $image->data }}" style="width: {{ $image->width }}; height: {{ $image->height }};" />
