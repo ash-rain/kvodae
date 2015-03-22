@@ -57,7 +57,6 @@ return [
 	| this array to grant expanded functionality to your applications.
 	|
 	*/
-
 	'providers' => [
 
 		/*
@@ -86,7 +85,7 @@ return [
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Html\HtmlServiceProvider',
-
+		'Darryldecode\Cart\CartServiceProvider',
 		/*
 		 * Application Service Providers...
 		 */
@@ -145,7 +144,8 @@ return [
 		'View'      => 'Illuminate\Support\Facades\View',
 		'Form'  => 'Illuminate\Html\FormFacade',
 		'HTML'  => 'Illuminate\Html\HtmlFacade',
-		
+		'Cart' => 'Darryldecode\Cart\Facades\CartFacade'
+
 	],
 
 ];

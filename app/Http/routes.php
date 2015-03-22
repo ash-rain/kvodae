@@ -2,7 +2,7 @@
 
 Route::get('/', 'WelcomeController@index');
 
-Route::get('home', 'HomeController@index');
+Route::get('home', 'ProductController@index');
 
 Route::get('language/{locale}', function($locale){
 	Session::set('lang', $locale);

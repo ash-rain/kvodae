@@ -57,7 +57,7 @@ class ImageController extends Controller {
 		return view('image.show', compact('image'));
 	}
 
-	public function update(Request $request, Image $image)
+	public function update(Image $image, Request $request)
 	{
 		$file = $request->file('file');
 
@@ -72,7 +72,7 @@ class ImageController extends Controller {
 			$mime = substr($data, 0, strpos($data, ';'));
 			$mime = substr($mime, 4);
 			$data = substr($data, 1 + strpos($data, ','));
-			$size = base64_decode($size);
+			$size = base64_decode($data);
 			$size = getimagesizefromstring($size);
 		}
 

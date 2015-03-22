@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 use App\Product;
 use App\Template;
 
@@ -29,6 +30,7 @@ class ProductController extends Controller {
 		$input = $request->only(['name', 'price', 'text', 'template_id']);
 		$product = new Product;
 		$product->fill($input);
+		$product->user_id = Auth::user()->id;
 		$product->save();
 		return redirect(action('ProductController@edit', $product->id));
 	}

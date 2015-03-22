@@ -1,3 +1,19 @@
+body {
+	overflow-x: hidden;
+	background-image: url('/img/bg.jpg');
+	background-size: cover;
+}
+
+#content { margin-top: .5em; }
+
+#buy { font-size: 1.6em; }
+
+.specs td {
+	font-size: 1.4em;
+	line-height: 1em;
+}
+.specs .key { opacity: .5; }
+
 .full { width: 100%; }
 
 .image-upload {

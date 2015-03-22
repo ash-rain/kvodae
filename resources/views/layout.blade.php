@@ -54,16 +54,16 @@
           </a>
           @endif
         </li>
-        <li class="has-dropdown">
-          <a href="javascript:void(0)">
+        <li>
+          <a href="{{ action('CartController@index') }}">
             <i class="fa fa-shopping-cart"></i>
             {{ trans('Cart') }}
-            <span class="round label">3</span>
+            @if(!Cart::isEmpty())
+            <span id="cart" class="round label">
+              {{ Cart::getContent()->count() }}
+            </span>
+            @endif
           </a>
-          <ul class="dropdown">
-            <li><a href="javascript:void(0)">First link</a></li>
-            <li><a href="javascript:void(0)">Link in dropdown</a></li>
-          </ul>
         </li>
       </ul>
       <ul class="left">
@@ -77,9 +77,10 @@
     </section>
   </nav>
 
-  <div class="row">
-    <h1>@yield('title')</h1>
-    @yield('content')
+  <div id="content">
+    <div class="row">
+      @yield('content')
+    </div>
   </div>
 
   <script src="{{ asset('js/jquery.js') }}"></script>

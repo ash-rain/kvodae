@@ -1,5 +1,6 @@
-@if(!is_null($image->data))
-<img src="{{ action('ImageController@show', $image->id) }}" />
+@if(!is_null($image) && !is_null($image->data))
+<img src="{{ action('ImageController@show', $image->id) }}"
+	data-width="{{ $image->width }}" />
 @else
-No image
+<img src="{{ asset('img/placeholder.png') }}" />
 @endif

@@ -12,6 +12,8 @@ class CreateInitialTables extends Migration {
 			$table->increments('id');
 			$table->string('name');
 			$table->float('price')->unsigned();
+			$table->boolean('multiline')->nullable();
+			$table->string('specs', 200)->nullable();
 			$table->string('draw_data', 200)->default('{}');
 		});
 
@@ -19,10 +21,12 @@ class CreateInitialTables extends Migration {
 		{
 			$table->increments('id');
 			$table->string('name');
+			$table->string('description')->nullable();
 			$table->float('price')->unsigned()->nullable();
 			$table->string('text')->nullable();
-			$table->integer('template_id')->unsigned();
 			$table->boolean('for_sale')->nullable();
+			$table->integer('template_id')->unsigned();
+			$table->integer('user_id')->unsigned();
 			$table->timestamps();
 		});
 

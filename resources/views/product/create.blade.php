@@ -33,11 +33,6 @@
 	</label>
 
 	<label>
-		{{ trans('Text') }}
-		<input type="text" name="text" value="{{ old('text') }}" required />
-	</label>
-
-	<label>
 		<input type="checkbox" checked />
 		{{ trans('For Sale') }}
 	</label>
