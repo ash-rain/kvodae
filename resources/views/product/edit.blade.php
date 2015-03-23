@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Edit Product')
+@section('title', $product->name)
 
 @include('shared.number')
 
@@ -26,18 +26,18 @@ var postUrl = "{{ count($product->images)
 <div class="row">
 	<div class="medium-4 columns">
 		<button type="submit" class="full" style="margin: 7px 0 0 0">
-			{{ trans('Save') }}
+			{{ trans('app.save') }}
 		</button>
 	</div>
 	<div class="medium-4 columns">
 		<label>
-			{{ trans('Name') }}
+			{{ trans('app.name') }}
 			{!! Form::text('name', null, ['required']) !!}
 		</label>
 	</div>
 	<div class="medium-4 columns">
 		<label>
-			{{ trans('Price') }}
+			{{ trans('app.price') }}
 
 			<div class="row collapse">
 				<div class="small-3 columns">

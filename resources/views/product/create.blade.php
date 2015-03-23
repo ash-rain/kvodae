@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Create Product')
+@section('title', trans('product.create'))
 
 @include('shared.number')
 
@@ -11,13 +11,14 @@
 <input type="hidden" name="template_id" value="{{ $template->id }}" />
 
 <div class="medium-6 columns">
+	<h1>{{ trans('product.create') }}</h1>
 	<label>
-		{{ trans('Name') }}
+		{{ trans('app.name') }}
 		<input type="text" name="name" value="{{ old('name') }}" required />
 	</label>
 
 	<label>
-		{{ trans('Price') }}
+		{{ trans('app.price') }}
 
 		<div class="row collapse">
 			<div class="small-3 large-2 columns">
@@ -34,10 +35,10 @@
 
 	<label>
 		<input type="checkbox" checked />
-		{{ trans('For Sale') }}
+		{{ trans('app.for_sale') }}
 	</label>
 	
-	<button type="submit">{{ trans('Create') }}</button>
+	<button type="submit">{{ trans('app.create') }}</button>
 </div>
 <div class="medium-6 columns">
 	@include('image.show', ['image' => $template->images[0]])

@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Create Template')
+@section('title', trans('template.create'))
 
 @include('shared.number')
 
@@ -9,17 +9,19 @@
 {!! Form::open([ 'url' => action('TemplateController@store') ]) !!}
 
 <div class="medium-6 medium-centered columns">
+	<h1>{{ trans('template.new') }}</h1>
+
 	<label>
-		{{ trans('Name') }}
+		{{ trans('app.name') }}
 		<input type="text" name="name" value="{{ old('name') }}" required />
 	</label>
 
 	<label>
-		{{ trans('Price') }}
+		{{ trans('app.price') }}
 		<input type="number" name="price" value="{{ old('price') }}" required />
 	</label>
 
-	<button type="submit">{{ trans('Create') }}</button>
+	<button type="submit">{{ trans('app.create') }}</button>
 </div>
 
 {!! Form::close() !!}

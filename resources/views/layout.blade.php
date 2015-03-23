@@ -21,7 +21,7 @@
         </h1>
       </li>
       <li class="toggle-topbar menu-icon">
-        <a href="javascript:void(0)"><span>{{ trans('Menu') }}</span></a>
+        <a href="javascript:void(0)"><span>{{ trans('app.menu') }}</span></a>
       </li>
     </ul>
 
@@ -50,14 +50,14 @@
           @else
           <a href="{{ action('Auth\AuthController@getLogin') }}">
             <i class="fa fa-sign-in"></i>
-            {{ trans('Login') }}
+            {{ trans('app.login') }}
           </a>
           @endif
         </li>
         <li>
           <a href="{{ action('CartController@index') }}">
             <i class="fa fa-shopping-cart"></i>
-            {{ trans('Cart') }}
+            {{ trans('app.cart') }}
             @if(!Cart::isEmpty())
             <span id="cart" class="round label">
               {{ Cart::getContent()->count() }}

@@ -31,7 +31,7 @@ var token = "{{ csrf_token() }}"
 
 	<a class="button success full" id="buy" data-id="{{ $product->id }}">
 		<i class="fa fa-cart-plus"></i>
-		{{ trans('Buy for ') }}
+		{{ trans('app.buy_for') }}
 		@price($product)
 	</a>
 

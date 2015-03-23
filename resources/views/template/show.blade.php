@@ -13,9 +13,10 @@
 <div class="medium-6 columns">
 @endif
 
+<h1>{{ $template->name }}</h1>
 <h2>{{ $template->price }}</h2>
 
-<a class="button" href="{{ action('ProductController@create', ['template' => $template->id]) }}">{{ trans('Customize') }}</a>
+<a class="button" href="{{ action('ProductController@create', ['template' => $template->id]) }}">{{ trans('template.customize') }}</a>
 
 @if(count($template->images))
 </div>

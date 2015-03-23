@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Edit Template')
+@section('title', trans('template.edit'))
 
 @include('shared.number')
 
@@ -16,7 +16,7 @@
 
 @section('js')
 var drawConfig = {!! $template->draw_data !!}
-var text = "{{ trans('Sample Text') }}"
+var text = "{{ trans('template.sample_text') }}"
 
 @stop
 
@@ -25,31 +25,31 @@ var text = "{{ trans('Sample Text') }}"
 {!! Form::model($template, [ 'url' => action('TemplateController@update', $template->id), 'method' => 'patch' ]) !!}
 
 <div class="medium-4 columns">
-	<button type="submit" class="full">{{ trans('Save') }}</button>
+	<button type="submit" class="full">{{ trans('app.save') }}</button>
 
 	<label>
-		{{ trans('Name') }}
+		{{ trans('app.name') }}
 		{!! Form::text('name', null, ['required']) !!}
 	</label>
 
 	<label>
-		{{ trans('Price') }}
+		{{ trans('app.price') }}
 		{!! Form::text('price', null, ['required']) !!}
 	</label>
 
 	<label>
-		{{ trans('Preview Text') }}
-		{!! Form::text('text', trans('Sample Text')) !!}
+		{{ trans('template.preview_text') }}
+		{!! Form::text('text', trans('template.sample_text')) !!}
 	</label>
 
 	<label>
 		{!! Form::checkbox('multiline') !!}
-		{{ trans('Allow Multiline') }}
+		{{ trans('template.allow_multiline') }}
 	</label>
 
 	<div class="panel">
 		<label>
-			{{ trans('Font') }}
+			{{ trans('template.font') }}
 			<select name="font_family">
 				@foreach($fonts as $font)
 				<option {{ @$template->drawConfig->font_family == $font ? 'selected' : '' }}>
@@ -64,14 +64,14 @@ var text = "{{ trans('Sample Text') }}"
 				<div class="row collapse">
 					<div class="small-6 columns">
 						<label>
-							{{ trans('Size') }}
+							{{ trans('template.font_size') }}
 							<input type="number" name="font_size" min="10"
 								value="{{ $template->drawConfig->font_size or 14 }}" />
 						</label>
 					</div>
 					<div class="small-6 columns">
 						<label>
-							<span class="right">{{ trans('Align') }}</span>
+							<span class="right">{{ trans('template.align') }}</span>
 							<select name="align" class="fa">
 								@foreach(['left', 'center', 'right'] as $i => $align)
 								<option value="{{ $align }}"
@@ -85,7 +85,7 @@ var text = "{{ trans('Sample Text') }}"
 			</li>
 			<li>
 				<label>
-					{{ trans('Color') }}
+					{{ trans('template.font_color') }}
 					<input type="text" name="fill"
 						value="{{ $template->drawConfig->fill or '#000000' }}" />
 				</label>
@@ -93,7 +93,7 @@ var text = "{{ trans('Sample Text') }}"
 		</div>
 
 		<label>
-			{{ trans('Rotation') }}
+			{{ trans('template.rotation') }}
 			<input type="range" class="full" name="rotate" min="-180" max="180"
 				value="{{ $template->drawConfig->rotate or 0 }}" />
 		</label>
@@ -110,9 +110,9 @@ var text = "{{ trans('Sample Text') }}"
 		<a class="button full">
 			<i class="fa fa-image"></i>
 			@if(count($template->images))
-			{{ trans('Change Photo') }}
+			{{ trans('template.photo_change') }}
 			@else
-			{{ trans('Upload Photo') }}
+			{{ trans('template.photo_upload') }}
 			@endif
 		</a>
 		<input type="file" />

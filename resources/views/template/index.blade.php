@@ -1,12 +1,16 @@
 @extends('layout')
 
-@section('title', 'Templates')
+@section('title', trans('template.index'))
 
 @section('content')
 
-<a class="button" href="{{ action('TemplateController@create') }}">
-	{{ trans('Create') }}
-</a>
+<h1>
+	{{ trans('template.index') }}
+	<a class="button" href="{{ action('TemplateController@create') }}">
+		<i class="fa fa-plus"></i>
+		{{ trans('app.create') }}
+	</a>
+</h1>
 
 <ul class="small-block-grid-2 medium-block-grid-4">
 @foreach($templates as $template)
