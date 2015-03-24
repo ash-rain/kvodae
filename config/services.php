@@ -2,36 +2,20 @@
 
 return [
 
-	/*
-	|--------------------------------------------------------------------------
-	| Third Party Services
-	|--------------------------------------------------------------------------
-	|
-	| This file is for storing the credentials for third party services such
-	| as Stripe, Mailgun, Mandrill, and others. This file provides a sane
-	| default location for this type of information, allowing packages
-	| to have a conventional place to find your various credentials.
-	|
-	*/
+	'microweber' => [
+	    'client_id' => env('MW_CLIENT'),
+	    'client_secret' => env('MW_SECRET'),
+	    'redirect' => url('/auth/callback')
+	],
 
 	'mailgun' => [
 		'domain' => '',
 		'secret' => '',
 	],
 
-	'mandrill' => [
-		'secret' => '',
-	],
-
-	'ses' => [
-		'key' => '',
-		'secret' => '',
-		'region' => 'us-east-1',
-	],
-
-	'stripe' => [
-		'model'  => 'User',
-		'secret' => '',
+	'paypal' => [
+		'client_id' => 'AZp1TV9bwG3Be5ojO4laj2_UPuSUTbFy9E_I9RD4tY0mzFwOwjoZfNv1kvPSzR1Sf7C4ofbutj0UPKsK',
+		'secret' => 'EIkU7-DQpqps8XIfHUODi-tsb8U-sb7sCZ0o1YzG50E6sy2smx5SDrOm17MaEHsw1CaLyg9DrhWy_LJy'
 	],
 
 ];

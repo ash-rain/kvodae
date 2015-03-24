@@ -9,7 +9,7 @@ class ImageController extends Controller {
 
 	public function __construct()
 	{
-		$this->middleware('auth');
+		$this->middleware('auth', ['except' => 'show']);
 	}
 
 	public function show(Image $image)
@@ -36,8 +36,15 @@ class ImageController extends Controller {
 			$size = getimagesizefromstring($size);
 		}
 
-		$imageableModel = 'App\\' . studly_case($request->input('imageable', 'product'));
+		$imageableType = $request->input('imageable', 'product');
+		$imageableModel = 'App\\' . studly_case($imageableType);
 		$imageable = $imageableModel::find($request->input('imageable_id'));
+
+		if($imageableType == 'template') {
+			if($size[0] < 1000 || $size[1] < 600) {
+				throw new \Exception(trans('template.upload_too_small'), 1);
+			}
+		}
 
 		if(count($imageable->images)) {
 			$image = $imageable->images[0];

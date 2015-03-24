@@ -35,7 +35,7 @@
 
 	<label>
 		<input type="checkbox" checked />
-		{{ trans('app.for_sale') }}
+		{{ trans('product.for_sale') }}
 	</label>
 	
 	<button type="submit">{{ trans('app.create') }}</button>

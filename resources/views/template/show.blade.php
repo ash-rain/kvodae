@@ -14,7 +14,10 @@
 @endif
 
 <h1>{{ $template->name }}</h1>
-<h2>{{ $template->price }}</h2>
+<h2>
+	{{ $template->price }}
+	{{ config('app.currency') }}
+</h2>
 
 <a class="button" href="{{ action('ProductController@create', ['template' => $template->id]) }}">{{ trans('template.customize') }}</a>
 

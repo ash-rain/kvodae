@@ -1,14 +1,13 @@
-$("#buy").click(function(){
+$(".button.buy").click(function(){
 	// Add to cart
 	$.post("/cart", { _token: token, id: $(this).data("id") }, function(m) {
-		console.log(m)
 		var c = $("#cart")
-		if(c) c.text(parseInt(c.text()) + 1)
-		else $(".top-bar .fa-shopping-cart").parent().append($("<span class='round label'>1</span>"))
+		if(c.length) c.text(m)
+		else $(".top-bar .fa-shopping-cart").parent().append($("<span id='cart' class='round label'>1</span>"))
 	})
 
 	// Animation
-	var dolly = $(".th").first()
+	var dolly = $(this).parents(".th").first()
 	dolly = dolly.clone().css({
 		position: "absolute",
 		top: dolly.offset().top,

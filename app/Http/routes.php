@@ -12,6 +12,7 @@ Route::get('language/{locale}', function($locale){
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
+	'checkout' => 'CheckoutController'
 ]);
 
 Route::model('templates', 'App\Template');

@@ -9,7 +9,7 @@ class ProductController extends Controller {
 
 	public function __construct()
 	{
-		$this->middleware('auth');
+		$this->middleware('auth', ['only' => ['edit', 'update', 'destroy']]);
 	}
 
 	public function index()
@@ -47,10 +47,10 @@ class ProductController extends Controller {
 	
 	public function update(Request $request, Product $product)
 	{
-		$input = $request->only(['name', 'price', 'text']);
+		$input = $request->only(['name', 'price', 'text', 'description']);
 		$product->fill($input);
 		$product->save();
-		return redirect(action('ProductController@index'));
+		return redirect(action('ProductController@show', $product->id));
 	}
 
 	public function destroy(Product $product)

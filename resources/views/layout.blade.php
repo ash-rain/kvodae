@@ -1,14 +1,17 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
   <title>@yield('title')</title>
-  <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+  
+  <link href='http://fonts.googleapis.com/css?family=Comfortaa:400,700&subset=latin,cyrillic,cyrillic-ext' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="{{ asset('css/foundation.css') }}">
   <link rel="stylesheet" href="{{ asset('css/font-awesome.css') }}">
   <link rel="stylesheet" href="{{ asset('css/flag-icon.css') }}">
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+  <style>@yield('css')</style>
   @yield('head')
   <script src="{{ asset('js/modernizr.js') }}"></script>
 </head>
@@ -17,7 +20,9 @@
     <ul class="title-area">
       <li class="name">
         <h1>
-          <a href="{{ url('/') }}">KVO DA E</a>
+          <a id="logo" href="{{ url('/') }}">
+          	<img src="{{ url('/img/globe.png') }}" />
+          </a>
         </h1>
       </li>
       <li class="toggle-topbar menu-icon">
@@ -29,11 +34,14 @@
       <ul class="right">
         <li class="has-dropdown">
           <a href="javascript:void(0)">
-            <span class="flag flag-icon-background flag-icon-{{ App::getLocale() == 'en' ? 'gb' : App::getLocale() }}">&nbsp; &nbsp; &nbsp;</span>
+            <span class="flag left flag-icon-background flag-icon-{{ App::getLocale() == 'en' ? 'gb' : App::getLocale() }}">&nbsp; &nbsp; &nbsp;</span>
+            <span class="show-for-small-only">
+              &nbsp; {{ config('app.locales')[App::getLocale()] }}
+            </span>
           </a>
           <ul class="dropdown">
             @foreach (config('app.locales') as $locale => $display)
-              <li {!! session('lang') == $locale ? 'class="active"' : '' !!}>
+              <li {!! App::getLocale() == $locale ? 'class="active"' : '' !!}>
                 <a href="{{ url("/language/$locale") }}">
                   <span class="flag flag-icon-background flag-icon-{{ $locale == 'en' ? 'gb' : $locale }}">&nbsp; &nbsp; &nbsp;</span>
                   {{ $display }}
@@ -44,11 +52,11 @@
         </li>
         <li>
           @if(Auth::check())
-          <a href="{{ action('Auth\AuthController@getLogin') }}">
+          <a href="{{ action('Auth\AuthController@getLogout') }}">
             {{ Auth::user()->name }}
           </a>
           @else
-          <a href="{{ action('Auth\AuthController@getLogin') }}">
+          <a href="{{ action('Auth\AuthController@getIndex') }}">
             <i class="fa fa-sign-in"></i>
             {{ trans('app.login') }}
           </a>

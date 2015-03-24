@@ -6,6 +6,10 @@ return [
 	'name' => 'Name',
 	'price' => 'Price',
 	'cart' => 'Cart',
-	'buy_for' => 'Buy for',
-	'for_sale' => 'For sale'
+	'cart_total' => 'Total:',
+	'cart_remove' => 'Remove',
+	'buy_for' => 'Buy',
+	'checkout' => 'Checkout',
+	'login' => 'Login',
+	'menu' => 'Menu'
 ];

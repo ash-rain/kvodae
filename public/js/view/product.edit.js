@@ -1,12 +1,12 @@
-var canvas = $("canvas").hide()[0]
+var canvas = $("canvas")[0]
 var zoom = 1
 
-$("#image img").load(function(){
-	var img = $(this)
-	var h = (img.width() / $(canvas).width()) * img.height();
+$(function(){
+	var img = $("#image img")
+	var h = ($(canvas).width() / img.data("width")) * img.data("height");
 	zoom = $(canvas).width() / img.data("width")
 	$(canvas).height(h).show()
-	$("#image").hide()
+	img.hide()
 	drawText()
 })
 

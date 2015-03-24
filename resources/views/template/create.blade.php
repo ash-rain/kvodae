@@ -9,7 +9,7 @@
 {!! Form::open([ 'url' => action('TemplateController@store') ]) !!}
 
 <div class="medium-6 medium-centered columns">
-	<h1>{{ trans('template.new') }}</h1>
+	<h1>{{ trans('template.create') }}</h1>
 
 	<label>
 		{{ trans('app.name') }}

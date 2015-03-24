@@ -25,6 +25,7 @@ class CartController extends Controller {
 		$id = $request->input('id');
 		$product = Product::find($id);
 		Cart::add($id, $product->name, $product->finalPrice, 1);
+		return Cart::getContent()->count();
 	}
 	
 	public function update($id, Request $request)

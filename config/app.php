@@ -8,11 +8,14 @@ return [
 
 	'timezone' => 'UTC',
 
+	'currency' => '&euro;',
+
 	'locale' => 'en',
 
 	'locales' => [
 		'en' => 'English',
-		'bg' => 'Bulgarian',
+		'bg' => 'Български',
+		'fr' => 'Français',
 	],
 
 	'fallback_locale' => 'en',
@@ -86,6 +89,9 @@ return [
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Html\HtmlServiceProvider',
 		'Darryldecode\Cart\CartServiceProvider',
+		'Anouar\Paypalpayment\PaypalpaymentServiceProvider',
+		'Laravel\Socialite\SocialiteServiceProvider',
+
 		/*
 		 * Application Service Providers...
 		 */
@@ -144,7 +150,9 @@ return [
 		'View'      => 'Illuminate\Support\Facades\View',
 		'Form'  => 'Illuminate\Html\FormFacade',
 		'HTML'  => 'Illuminate\Html\HtmlFacade',
-		'Cart' => 'Darryldecode\Cart\Facades\CartFacade'
+		'Cart' => 'Darryldecode\Cart\Facades\CartFacade',
+		'PayPal'   => 'Anouar\Paypalpayment\Facades\PaypalPayment',
+		'Socialite' => 'Laravel\Socialite\Facades\Socialite',
 
 	],
 

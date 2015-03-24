@@ -1,38 +1,49 @@
 <?php namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Socialite;
 use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Contracts\Auth\Registrar;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Database\QueryException;
+use Redirect;
+use App\Services\UserProvider;
 
-class AuthController extends Controller {
+class AuthController extends Controller
+{
 
-	/*
-	|--------------------------------------------------------------------------
-	| Registration & Login Controller
-	|--------------------------------------------------------------------------
-	|
-	| This controller handles the registration of new users, as well as the
-	| authentication of existing users. By default, this controller uses
-	| a simple trait to add these behaviors. Why don't you explore it?
-	|
-	*/
+	private function socialite()
+	{
+		Socialite::extend('microweber', function($app) {
+			$config = $app['config']['services.microweber'];
+			return Socialite::buildProvider('App\Services\MicroweberProvider', $config);
+		});
+	}
 
-	use AuthenticatesAndRegistersUsers;
+	function getIndex()
+	{
+		$this->socialite();
+		return Socialite::driver('microweber')->redirect();
+	}
 
-	/**
-	 * Create a new authentication controller instance.
-	 *
-	 * @param  \Illuminate\Contracts\Auth\Guard  $auth
-	 * @param  \Illuminate\Contracts\Auth\Registrar  $registrar
-	 * @return void
-	 */
-	public function __construct(Guard $auth, Registrar $registrar)
+	function getCallback() {
+		$this->socialite();
+        $user = Socialite::driver('microweber')->user();
+        $user = UserProvider::findOrCreate($user, 'microweber');
+        $this->auth->login($user);
+		return Redirect::intended('/');
+	}
+
+	function getLogout()
+	{
+		$this->auth->logout();
+		return redirect('/');
+	}
+
+	function __construct(Guard $auth)
 	{
 		$this->auth = $auth;
-		$this->registrar = $registrar;
-
-		$this->middleware('guest', ['except' => 'getLogout']);
+		$this->middleware('guest', [
+			'except' => ['getLogout', 'me']
+			]);
 	}
 
 }

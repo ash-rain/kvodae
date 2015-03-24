@@ -66,12 +66,22 @@ var postUrl = "{{ count($product->images)
 
 <div class="row">
 	<div class="small-12 columns">
-		<p class="th" style="display: block;">
+		<div class="th" style="display: block;">
 			<canvas style="width: 100%;"></canvas>
 			<div id="image" class="{{ count($product->images) ? '' : 'new' }}">
 				@include('image.show', ['image' => $product->template->images[0]])
 			</div>
-		</p>
+		</div>
+		<p></p>
+	</div>
+</div>
+
+<div class="row">
+	<div class="small-12 columns">
+		<label>
+			{{ trans('product.description') }}
+			{!! Form::textarea('description') !!}
+		</label>
 	</div>
 </div>
 

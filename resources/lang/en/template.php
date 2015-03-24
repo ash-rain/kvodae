@@ -2,7 +2,7 @@
 
 return [
 	'index' => 'Templates',
-	'create' => 'Create',
+	'create' => 'Create a Template',
 	'customize' => 'Customize',
 	'photo_change' => 'Change Photo',
 	'photo_upload' => 'Upload Photo',
@@ -14,4 +14,5 @@ return [
 	'font_color' => 'Color',
 	'align' => 'Align',
 	'rotation' => 'Rotation',
+	'upload_too_small' => 'Minimum image dimensions: 1000x600'
 ];
