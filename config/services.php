@@ -5,7 +5,7 @@ return [
 	'microweber' => [
 	    'client_id' => env('MW_CLIENT'),
 	    'client_secret' => env('MW_SECRET'),
-	    'redirect' => url('/auth/callback')
+	    'redirect' => app()->runningInConsole() ? '' : url('/auth/callback')
 	],
 
 	'mailgun' => [

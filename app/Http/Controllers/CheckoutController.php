@@ -1,8 +1,11 @@
 <?php namespace App\Http\Controllers;
 
-use Paypalpayment;
+use Auth;
+use Cart;
+use PayPal;
 use Redirect;
 use Illuminate\Http\Request;
+use App\Order;
 
 class CheckoutController extends Controller
 {
@@ -11,7 +14,7 @@ class CheckoutController extends Controller
 
 	public function __construct()
 	{
-		$this->_apiContext = Paypalpayment::ApiContext(config('services.paypal.client_id'), config('services.paypal.secret'));
+		$this->_apiContext = PayPal::ApiContext(config('services.paypal.client_id'), config('services.paypal.secret'));
 		
 		$this->_apiContext->setConfig(array(
 			'mode' => 'sandbox',
@@ -29,38 +32,48 @@ class CheckoutController extends Controller
 		$token = $request->get('token');
 		$payer_id = $request->get('PayerID');
 		
-		$payment = Paypalpayment::getById($id, $this->_apiContext);
+		$payment = PayPal::getById($id, $this->_apiContext);
 
-		$paymentExecution = Paypalpayment::PaymentExecution();
+		$paymentExecution = PayPal::PaymentExecution();
 
-		$paymentExecution->setPayer_id($payer_id);
+		$paymentExecution->setPayerId($payer_id);
 		$executePayment = $payment->execute($paymentExecution, $this->_apiContext);
+
+		$order = Order::whereUserId(Auth::user()->id)->orderBy('created_at', 'desc')->first();
+		
+		if(!is_null($order)) {
+			$order->payment = $id;
+			$order->save();
+		}
+
+		Cart::clear();
+
+		return view('checkout.done');
 	}
 	
 	public function getCancel()
 	{
-		// todo
-		return 'Y U DO THIS';
+		return view('checkout.cancel');
 	}
 
 	public function getIndex()
 	{
-		$payer = Paypalpayment::Payer();
-		$payer->setPayment_method("paypal");
+		$payer = PayPal::Payer();
+		$payer->setPaymentMethod("paypal");
 
-		$amount = Paypalpayment:: Amount();
-		$amount->setCurrency("USD");
-		$amount->setTotal("1.00");
+		$amount = PayPal:: Amount();
+		$amount->setCurrency(config('app.checkout_currency'));
+		$amount->setTotal(Cart::getTotal());
 
-		$transaction = Paypalpayment:: Transaction();
+		$transaction = PayPal:: Transaction();
 		$transaction->setAmount($amount);
-		$transaction->setDescription("This is the payment description.");
+		$transaction->setDescription(trans('app.checkout_description', [ 'count' => count(Cart::getContent()) ]));
 
-		$redirectUrls = Paypalpayment:: RedirectUrls();
-		$redirectUrls->setReturn_url(url('/checkout/done'));
-		$redirectUrls->setCancel_url(url('/checkout/cancel'));
+		$redirectUrls = PayPal:: RedirectUrls();
+		$redirectUrls->setReturnUrl(url('/checkout/done'));
+		$redirectUrls->setCancelUrl(url('/checkout/cancel'));
 
-		$payment = Paypalpayment:: Payment();
+		$payment = PayPal:: Payment();
 		$payment->setIntent("sale");
 		$payment->setPayer($payer);
 		$payment->setRedirectUrls($redirectUrls);
@@ -68,16 +81,14 @@ class CheckoutController extends Controller
 
 		$response = $payment->create($this->_apiContext);
 
-		//set the trasaction id , make sure $_paymentId var is set within your class
-		$this->_paymentId = $response->id;
-
-		//dump the repose data when create the payment
 		$redirectUrl = $response->links[1]->href;
 
-		//this is will take you to complete your payment on paypal
-		//when you confirm your payment it will redirect you back to the rturned url set above
-		//inmycase sitename/payment/confirmpayment this will execute the getConfirmpayment function bellow
-		//the return url will content a PayerID var
+		$order = new Order([
+				'total' => Cart::getTotal(),
+				'user_id' => Auth::user()->id,
+			]);
+		$order->save();
+		
 		return Redirect::to( $redirectUrl );
 	}
 

@@ -9,15 +9,14 @@ return [
 	'timezone' => 'UTC',
 
 	'currency' => '&euro;',
+	'checkout_currency' => 'EUR',
 
 	'locale' => 'en',
-
 	'locales' => [
 		'en' => 'English',
 		'bg' => 'Български',
 		'fr' => 'Français',
 	],
-
 	'fallback_locale' => 'en',
 
 	/*
@@ -89,7 +88,7 @@ return [
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Html\HtmlServiceProvider',
 		'Darryldecode\Cart\CartServiceProvider',
-		'Anouar\Paypalpayment\PaypalpaymentServiceProvider',
+		'Netshell\Paypal\PaypalServiceProvider',
 		'Laravel\Socialite\SocialiteServiceProvider',
 
 		/*
@@ -151,7 +150,7 @@ return [
 		'Form'  => 'Illuminate\Html\FormFacade',
 		'HTML'  => 'Illuminate\Html\HtmlFacade',
 		'Cart' => 'Darryldecode\Cart\Facades\CartFacade',
-		'PayPal'   => 'Anouar\Paypalpayment\Facades\PaypalPayment',
+		'PayPal'   => 'Netshell\Paypal\Facades\Paypal',
 		'Socialite' => 'Laravel\Socialite\Facades\Socialite',
 
 	],

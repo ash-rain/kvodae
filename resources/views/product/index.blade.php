@@ -11,7 +11,6 @@ var token = "{{ csrf_token() }}"
 @stop
 
 @section('content')
-@parent
 <ul class="medium-block-grid-4" data-equalizer>
 	@foreach($products as $product)
 	<li data-equalizer-watch>

@@ -10,6 +10,9 @@ return [
 	'cart_remove' => 'Remove',
 	'buy_for' => 'Buy',
 	'checkout' => 'Checkout',
+	'checkout_done' => 'Your order\'s been received :)',
+	'checkout_cancel' => 'Your have cancelled your order :(',
 	'login' => 'Login',
-	'menu' => 'Menu'
+	'menu' => 'Menu',
+	'checkout_description' => ':count products from kvodae.com'
 ];

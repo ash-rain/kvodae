@@ -18,7 +18,7 @@ $("[data-delete]").click(function() {
 	$.post(form.attr("action"), { _token: t, _method: "DELETE" })
 	$(this).parents("li").hide(300, function(){
 		$(this).remove()
-		if(!$(this).siblings().length) document.location = "{{ url('home') }}"
+		location.reload()
 	})
 })
 @stop
@@ -28,7 +28,7 @@ $("[data-delete]").click(function() {
 
 <h1>
 	<a class="button success right" href="{{ action('CheckoutController@getIndex') }}">
-		<i class="fa fa-arrow-right"></i>
+		<i class="fa fa-paypal"></i>
 		{{ trans('app.checkout') }}
 	</a>
 	<div class="right" style="padding-right: 1em">
@@ -43,7 +43,7 @@ $("[data-delete]").click(function() {
 
 <hr />
 
-<ul class="small-block-grid-2 medium-block-grid-3">
+<ul class="small-block-grid-2 medium-block-grid-4">
 	@foreach($cart as $item)
 	<li>
 	{!! Form::open([ 'url' => action('CartController@update', $item['id']), 'method' => 'patch' ]) !!}
