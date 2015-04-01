@@ -24,6 +24,8 @@ class CheckoutController extends Controller
 			'log.FileName' => storage_path('logs/paypal.log'),
 			'log.LogLevel' => 'FINE'
 		));
+
+		$this->middleware('auth', ['only' => 'getIndex']);
 	}
 
 	public function getDone(Request $request)
@@ -89,7 +91,7 @@ class CheckoutController extends Controller
 			]);
 		$order->save();
 		
-		return Redirect::to( $redirectUrl );
+		return Redirect::to($redirectUrl);
 	}
 
 }

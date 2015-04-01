@@ -32,70 +32,59 @@ $("[data-delete]").click(function() {
 		{{ trans('app.checkout') }}
 	</a>
 	<div class="right" style="padding-right: 1em">
-		<small>
+		<div class="subtitle">
 			{{ trans('app.cart_total') }}
 			{{ Cart::getTotal() }}
 			{{ config('app.currency') }}
-		</small>
+		</div>
 	</div>
 	{{ trans('app.cart') }}
 </h1>
 
 <hr />
 
-<ul class="small-block-grid-2 medium-block-grid-4">
+<ul class="small-block-grid-1 large-block-grid-2">
 	@foreach($cart as $item)
 	<li>
 	{!! Form::open([ 'url' => action('CartController@update', $item['id']), 'method' => 'patch' ]) !!}
-	<p>
-		<div class="product th">
-			@include('image.show', ['image' => $item['product']->images[0]])
-			<div class="action row collapse trans-opacity">
-				<div class="small-6 columns">
-					<a class="button full trans-opacity"
-						href="{{ action('ProductController@show', $item['id']) }}">
-						<div class="y-center">
-							<p>
-								<i class="fa fa-2x fa-search-plus buy"></i>
-							</p>
-							<p></p>
-							{{ trans('product.more_info') }}
-						</div>
-					</a>
-				</div>
-				<div class="small-6 columns">
-					<a class="alert button full trans-opacity"
-						data-delete="{{ $item['id'] }}">
-						<div class="y-center">
-							<p>
-								<i class="fa fa-2x fa-remove"></i>
-							</p>
-							<p></p>
-							{{ trans('app.cart_remove') }}
-						</div>
-					</a>
-				</div>
-			</div>
-		</div>
-	</p>
-	<div class="row collapse">
-		<div class="small-5 columns">
-			<div class="row collapse">
-				<div class="small-7 columns">
-					<span class="prefix">
-						@price($item['product'])
-						<i class="fa fa-times"></i>
-					</span>
-				</div>
-				<div class="small-5 columns">
-					<input type="number" name="quantity"
-					data-id="{{ $item['id'] }}"
-					value="{{ $item['quantity'] }}" />
+	<div class="row">
+		<div class="small-6 columns">
+			<div class="product th"
+				style="background-image: url(/images/{{ $item['product']->images[0]->id }});">
+				<div class="action row collapse trans-opacity">
+					<div class="small-6 columns">
+						<a class="button full trans-opacity"
+							href="{{ action('ProductController@show', $item['id']) }}">
+							<div class="y-center">
+								<p>
+									<i class="fa fa-2x fa-search-plus buy"></i>
+								</p>
+								<p></p>
+								{{ trans('product.more_info') }}
+							</div>
+						</a>
+					</div>
+					<div class="small-6 columns">
+						<a class="alert button full trans-opacity"
+							data-delete="{{ $item['id'] }}">
+							<div class="y-center">
+								<p>
+									<i class="fa fa-2x fa-remove"></i>
+								</p>
+								<p></p>
+								{{ trans('app.cart_remove') }}
+							</div>
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="small-7 columns" style="padding-left: 1em;">
+		<div class="small-6 columns">
 			<h4>{{ $item['name'] }}</h4>
+			@price($item['product'])
+			<h5 class="subheader">
+				{{ $item['product']->template->name }}
+			</h5>
 		</div>
 	</div>
 	{!! Form::close() !!}

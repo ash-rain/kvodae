@@ -3,26 +3,24 @@
 @section('title', $template->name)
 
 @section('content')
+<h1>{{ $template->name }}</h1>
 
-@if(count($template->images))
 <div class="medium-6 columns">
 	<div class="th">
 	@include('image.show', ['image' => $template->images[0]])
 	</div>
 </div>
+
 <div class="medium-6 columns">
-@endif
-
-<h1>{{ $template->name }}</h1>
-<h2>
-	{{ $template->price }}
-	{{ config('app.currency') }}
-</h2>
-
-<a class="button" href="{{ action('ProductController@create', ['template' => $template->id]) }}">{{ trans('template.customize') }}</a>
-
-@if(count($template->images))
+	<h2>
+		{{ $template->price }}
+		{{ config('app.currency') }}
+	</h2>
+	<a class="button" href="{{ action('ProductController@create', ['template' => $template->id]) }}">{{ trans('template.customize') }}</a>
 </div>
-@endif
+
+<div class="small-12 columns">
+	<h2>{{ trans('template.products') }}</h2>
+</div>
 
 @stop

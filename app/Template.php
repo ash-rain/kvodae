@@ -18,5 +18,9 @@ class Template extends Model {
 	public function getDrawConfigAttribute() {
 		return json_decode($this->attributes['draw_data']);
 	}
+	
+	public function getSpecsAttribute() {
+		return json_decode($this->attributes['specs']);
+	}
 
 }

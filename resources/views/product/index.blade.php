@@ -11,45 +11,53 @@ var token = "{{ csrf_token() }}"
 @stop
 
 @section('content')
-<ul class="medium-block-grid-4" data-equalizer>
-	@foreach($products as $product)
-	<li data-equalizer-watch>
-		<h3>
-		 	<a href="{{ action('ProductController@show', $product->id) }}">
-				{{ $product->name }}
-			</a>
-		</h3>
-		<div class="product th">
-			@include('image.show', ['image' => count($product->images) ? $product->images[0] : null])
-			<div class="action row collapse trans-opacity">
-				<div class="small-6 columns">
-					<a class="button full trans-opacity"
-						href="{{ action('ProductController@show', $product->id) }}">
-						<div class="y-center">
-							<p>
-								<i class="fa fa-2x fa-search-plus buy"></i>
-							</p>
-							<p></p>
-							{{ trans('product.more_info') }}
-						</div>
+<div class="row">
+	<div class="medium-5 large-4 columns">
+		<h1>
+			<a>{{ trans('product.index') }}</a>
+		</h1>
+		<hr />
+		<h2 class="filter">
+			<button class="dropdown" data-dropdown="drop_order_by">
+				{{ trans('filter.order_by') }}
+			</button>
+			<ul id="drop_order_by" data-dropdown-content class="f-dropdown">
+				@foreach(['price_asc', 'price_desc', 'popularity', 'sales'] as $criteria)
+				<li {{ $criteria == 'popularity' ? 'class=active' : '' }}>
+					<a href="#">
+						{{ trans('filter.order_by.' . $criteria) }}
 					</a>
+				</li>
+				@endforeach
+			</ul>
+
+			<button class="dropdown" data-dropdown="drop_material">
+				{{ trans('filter.material') }}
+			</button>
+			<div id="drop_material" data-dropdown-content
+				class="f-dropdown content">
+				
+				@foreach(['metal', 'plastic', 'rubber'] as $material)
+				<div class="clearfix">
+					<h5 class="left">{{ trans('material.' . $material) }}</h5>
+					<div class="right success switch">
+						<input id="{{ $material }}" type="checkbox" checked />
+						<label for="{{ $material }}"></label>
+					</div>
 				</div>
-				<div class="small-6 columns">
-					<a class="success button full trans-opacity buy"
-						data-id="{{ $product->id }}">
-						<div class="y-center">
-							<p>
-								<i class="fa fa-2x fa-cart-plus buy"></i>
-							</p>
-							<p></p>
-							{{ trans('app.buy_for') }}
-							<p>@price($product)</p>
-						</div>
-					</a>
-				</div>
+				@endforeach
+
 			</div>
-		</div>
-	</li>
-	@endforeach
-</ul>
+		</h2>
+	</div>
+	<div class="medium-7 large-8 columns">
+		<ul class="medium-block-grid-2 large-block-grid-3">
+			@foreach($products as $product)
+			<li>
+				@include('product.tile')
+			</li>
+			@endforeach
+		</ul>
+	</div>
+</div>
 @stop

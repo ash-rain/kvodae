@@ -7,5 +7,6 @@ return [
 	'description' => 'Description',
 	'more_info' => 'More Info',
 	'shipping_info' => 'Shipping in 2-5 business days',
-	'latest' => 'Latest Products'
+	'latest' => 'Latest Products',
+	'quantity' => 'Quantity'
 ];

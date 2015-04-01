@@ -13,7 +13,7 @@ var token = "{{ csrf_token() }}"
 @section('content')
 
 @if(count($product->images))
-<div class="medium-5 columns">
+<div class="medium-6 large-4 columns" id="images">
 	@foreach($product->images as $image)
 	<a class="th" data-reveal-id="image-{{ $image->id }}">
 		@include('image.show', compact('image'))
@@ -23,41 +23,54 @@ var token = "{{ csrf_token() }}"
 		@include('image.show', compact('image'))
 	</div>
 	@endforeach
-	<p></p>
-	<i>{{ trans('product.shipping_info') }}</i>
 </div>
 @endif
 
-<div class="medium-7 columns">
+<div class="medium-6 large-8 columns">
 	<h1>{{ $product->name }}</h1>
 
 	<a class="button success full buy" id="buy"
-		data-id="{{ $product->id }}">
-		<div class="row collapse">
-			<div class="small-10 medium-11 columns">
-				{{ trans('app.buy_for') }}
-				@price($product)
-			</div>
-			<div class="small-2 medium-1 columns">
-				<i class="fa fa-cart-plus"></i>
-			</div>
+		data-anim="#images" data-id="{{ $product->id }}">
+		<i class="fa fa-cart-plus"></i>
+		{{ trans('app.buy_for') }}
+		<div class="right">
+			@price($product)
 		</div>
 	</a>
 
-	@if($product->description)
-	<p>{!! nl2br($product->description) !!}</p>
-	@endif
+	<p id="shipping_info">{{ trans('product.shipping_info') }}</p>
 
-	@if($product->template->specs)
-	<table class="full specs" cellspacing="0">
-		@foreach($product->template->specs as $key => $value)
-		<tr>
-			<td class="key" width="20">{{ $key }}</td>
-			<td class="value">{{ $value }}</td>
-		</tr>
-		@endforeach
-	</table>
-	@endif
+	<div class="row collapse">
+		@if($product->description)
+		<div class="large-6 columns"> 
+			<p>{!! nl2br($product->description) !!}</p>
+		</div>
+		@endif
+		
+		@if($product->template->specs)
+		<div class="large-6 columns"> 
+			<table class="full specs" cellspacing="0">
+				@foreach($product->template->specs as $key => $value)
+				<tr>
+					<td class="key" width="20">{{ trans('specs.' . $key) }}</td>
+					<td class="text-right">{{ $value }}</td>
+				</tr>
+				@endforeach
+			</table>
+		</div>
+		@endif
+	</div>
+</div>
+
+<div class="small-12 columns">
+	<h2>{{ trans('product.related') }}</h2>
+	<ul class="small-block-grid-2 large-block-grid-4">
+	@foreach($related as $product)
+		<li>
+		@include('product.tile')
+		</li>
+	@endforeach
+	</ul>
 </div>
 
 {!! Form::close() !!}

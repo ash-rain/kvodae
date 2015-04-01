@@ -3,11 +3,15 @@ $(".button.buy").click(function(){
 	$.post("/cart", { _token: token, id: $(this).data("id") }, function(m) {
 		var c = $("#cart")
 		if(c.length) c.text(m)
-		else $(".top-bar .fa-shopping-cart").parent().append($("<span id='cart' class='round label'>1</span>"))
+		else {
+			$(".top-bar .fa-shopping-cart").parent().append($("<div id='cart' style='display:hidden'>1</div>"))
+		}
+		$("#cart").show(300).addClass("highlight")
+		setTimeout("$('#cart').removeClass('highlight')", 1000)
 	})
 
 	// Animation
-	var dolly = $(this).parents(".th").first()
+	var dolly = $(this).data("anim") ? $($(this).data("anim")).first() : $(this).parents(".th").first()
 	dolly = dolly.clone().css({
 		position: "absolute",
 		top: dolly.offset().top,

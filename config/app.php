@@ -90,7 +90,8 @@ return [
 		'Darryldecode\Cart\CartServiceProvider',
 		'Netshell\Paypal\PaypalServiceProvider',
 		'Laravel\Socialite\SocialiteServiceProvider',
-
+ 		'Laravel\Cashier\CashierServiceProvider',
+ 		
 		/*
 		 * Application Service Providers...
 		 */

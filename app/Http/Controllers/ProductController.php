@@ -14,7 +14,7 @@ class ProductController extends Controller {
 
 	public function index()
 	{
-		$products = Product::all();
+		$products = Product::orderBy('updated_at', 'desc')->get();
 		return view('product.index', compact('products'));
 	}
 
@@ -37,7 +37,9 @@ class ProductController extends Controller {
 
 	public function show(Product $product)
 	{
-		return view('product.show', compact('product'));
+		$related = Product::whereTemplateId($product->template_id)
+			->where('id', '!=', $product->id)->get();
+		return view('product.show', compact('product', 'related'));
 	}
 	
 	public function edit(product $product)

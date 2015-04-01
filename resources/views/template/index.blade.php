@@ -12,19 +12,19 @@
 	</a>
 </h1>
 
-<ul class="medium-block-grid-4">
+<ul class="small-block-grid-2 medium-block-grid-4">
 @foreach($templates as $template)
 	<li>
 		<a href="{{ action('TemplateController@show', $template->id) }}">
-			<div >
-				{{ $template->price .' '. config('app.currency') }}
+		<div class="product th"
+			style="background-image: url(/images/{{ $template->images[0]->id }})">
+			<div class="info row collapse trans-opacity">
+				<div class="small-12 columns">
+					<h4>{{ $template->name }}</h4>
+					<div>{{ $template->price .' '. config('app.currency') }}</div>
+				</div>
 			</div>
-			<h4>{{ $template->name }}</h4>
-			@if(count($template->images))
-			<div class="th">
-				@include('image.show', array('image' => $template->images[0]))
-			</div>
-			@endif
+		</div>
 		</a>
 	</li>
 @endforeach
