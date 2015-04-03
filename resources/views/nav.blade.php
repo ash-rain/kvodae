@@ -2,7 +2,13 @@
   <ul class="title-area">
     <li class="name">
       <h1>
-        <a id="logo" href="{{ url('/') }}">Hi</a>
+        <a id="logo" href="{{ url('/') }}">
+          @if(session('store_user'))
+          {{ App\User::find(session('store_user'))->name }}
+          @else
+          kvodae
+          @endif
+        </a>
       </h1>
     </li>
     <li class="toggle-topbar menu-icon">

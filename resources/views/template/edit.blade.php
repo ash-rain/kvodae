@@ -89,27 +89,11 @@ var text = "{{ trans('template.sample_text') }}"
 			
 			<div class="medium-block-grid-2">
 				<li>
-					<div class="row collapse">
-						<div class="small-6 columns">
-							<label>
-								{{ trans('template.font_size') }}
-								<input type="number" name="font_size" min="10"
-									value="{{ $template->drawConfig->font_size or 72 }}" />
-							</label>
-						</div>
-						<div class="small-6 columns">
-							<label>
-								<span class="right">{{ trans('template.align') }}</span>
-								<select name="align" class="fa">
-									@foreach(['left', 'center', 'right'] as $i => $align)
-									<option value="{{ $align }}"
-										{{ (isset($template->drawConfig->align) ? $template->drawConfig->align : 'center') == $align ? 'selected' : '' }}>&#xf03{{ 6 + $i }};
-										<i class="fa fa-align-{{ $align }}"></i>
-									</option>
-									@endforeach
-								</select>
-							</label>
-						</div>
+					<label>
+						{{ trans('template.font_size') }}
+						<input type="number" name="font_size" min="10"
+							value="{{ $template->drawConfig->font_size or 72 }}" />
+					</label>
 				</li>
 				<li>
 					<label>
@@ -124,6 +108,12 @@ var text = "{{ trans('template.sample_text') }}"
 				{{ trans('template.rotation') }}
 				<input type="range" class="full" name="rotate" min="-180" max="180"
 					value="{{ $template->drawConfig->rotate or 0 }}" />
+			</label>
+
+			<label>
+				{{ trans('template.skew') }}
+				<input type="range" class="full" name="skewX" min="-40" max="40"
+					value="{{ $template->drawConfig->skewX or 0 }}" />
 			</label>
 		</div>
 		{!! Form::hidden('draw_data') !!}

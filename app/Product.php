@@ -22,4 +22,12 @@ class Product extends Model {
 		$this->attributes['price'] = $price - $this->template->price;
 	}
 
+	public function newQuery($excludeDeleted = true) {
+		
+		if(session('store_user')) {
+			return parent::newQuery()->where('user_id', '=', session('store_user'));
+		}
+
+		return parent::newQuery();
+	}
 }

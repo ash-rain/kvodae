@@ -2,10 +2,6 @@
 
 @section('title', trans('product.index'))
 
-@section('scripts')
-<script type="text/javascript" src="{{ asset('js/view/buy.js') }}"></script>
-@stop
-
 @section('js')
 var token = "{{ csrf_token() }}"
 @stop
@@ -21,8 +17,9 @@ var token = "{{ csrf_token() }}"
 			<button class="dropdown" data-dropdown="drop_order_by">
 				{{ trans('filter.order_by') }}
 			</button>
-			<ul id="drop_order_by" data-dropdown-content class="f-dropdown">
-				@foreach(['price_asc', 'price_desc', 'popularity', 'sales'] as $criteria)
+			<ul id="drop_order_by" data-dropdown-content
+				class="f-dropdown text-right">
+				@foreach(['cheapest', 'newest', 'popular', 'sales'] as $criteria)
 				<li {{ $criteria == 'popularity' ? 'class=active' : '' }}>
 					<a href="#">
 						{{ trans('filter.order_by.' . $criteria) }}
@@ -39,11 +36,13 @@ var token = "{{ csrf_token() }}"
 				
 				@foreach(['metal', 'plastic', 'rubber'] as $material)
 				<div class="clearfix">
-					<h5 class="left">{{ trans('material.' . $material) }}</h5>
 					<div class="right success switch">
 						<input id="{{ $material }}" type="checkbox" checked />
 						<label for="{{ $material }}"></label>
 					</div>
+					<h5 class="right" style="padding-right: .5em;">
+						{{ trans('material.' . $material) }}
+					</h5>
 				</div>
 				@endforeach
 
@@ -51,7 +50,7 @@ var token = "{{ csrf_token() }}"
 		</h2>
 	</div>
 	<div class="medium-7 large-8 columns">
-		<ul class="medium-block-grid-2 large-block-grid-3">
+		<ul class="small-block-grid-2 large-block-grid-3">
 			@foreach($products as $product)
 			<li>
 				@include('product.tile')

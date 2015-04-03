@@ -47,8 +47,6 @@ function drawText() {
 	new paper.Raster($("#image img")[0], paper.view.center)
 	var t = new paper.PointText(paper.view.center)
 
-	if(drawConfig.rotate)
-		t.rotate( drawConfig.rotate )
 	t.content = text
 	t.style = {
 		fontFamily: (drawConfig.font || "sans-serif"),
@@ -60,6 +58,10 @@ function drawText() {
 		shadowOffset: new paper.Point(-1)
 	}
 	
+	if(drawConfig.skewX || drawConfig.skewY)
+		t.skew(parseInt(drawConfig.skewX) || 0, parseInt(drawConfig.skewY) || 0);
+	if(drawConfig.rotate)
+		t.rotate( drawConfig.rotate )
 	if(drawConfig.x && drawConfig.y)
 		t.translate( new paper.Point(drawConfig.x, drawConfig.y) )
 	

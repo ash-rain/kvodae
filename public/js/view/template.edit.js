@@ -29,10 +29,6 @@ $("input[name='font_size']").bind("keyup change", function() {
 	drawConfig.font_size = $(this).val()
 	drawText()
 })
-$("select[name='align']").change(function() {
-	drawConfig.align = $(this).val()
-	drawText()
-})
 $("input[name='fill']").minicolors({
 	position: "top left",
 	change: function(hex) {
@@ -49,6 +45,10 @@ $("input[name='rotate']").mousedown(function() {
 	})
 }).change(function() {
 	drawConfig.rotate = $(this).val()
+	drawText()
+})
+$("input[name='skewX']").change(function() {
+	drawConfig.skewX = $(this).val()
 	drawText()
 })
 
@@ -84,11 +84,13 @@ function drawText() {
 		fontFamily: (drawConfig.font || "sans-serif"),
 		fontSize: (drawConfig.font_size || 72),
 		fillColor: (drawConfig.fill || "#000000"),
-		justification: (drawConfig.align || "center"),
+		justification: "center",
 		shadowColor: "rgba(0,0,0,0.2)",
 		shadowBlur: 2,
 		shadowOffset: new paper.Point(-1)
 	}
+	if(drawConfig.skewX || drawConfig.skewY)
+		t.skew(parseInt(drawConfig.skewX) || 0, parseInt(drawConfig.skewY) || 0);
 	if(drawConfig.rotate)
 		t.rotate(drawConfig.rotate)
 	if(drawConfig.x && drawConfig.y)

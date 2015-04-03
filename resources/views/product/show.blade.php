@@ -2,10 +2,6 @@
 
 @section('title', $product->name)
 
-@section('scripts')
-<script type="text/javascript" src="{{ asset('js/view/buy.js') }}"></script>
-@stop
-
 @section('js')
 var token = "{{ csrf_token() }}"
 @stop
@@ -13,7 +9,7 @@ var token = "{{ csrf_token() }}"
 @section('content')
 
 @if(count($product->images))
-<div class="medium-6 large-4 columns" id="images">
+<div class="medium-6 columns" id="images">
 	@foreach($product->images as $image)
 	<a class="th" data-reveal-id="image-{{ $image->id }}">
 		@include('image.show', compact('image'))
@@ -26,8 +22,8 @@ var token = "{{ csrf_token() }}"
 </div>
 @endif
 
-<div class="medium-6 large-8 columns">
-	<h1>{{ $product->name }}</h1>
+<div class="medium-6 columns">
+	<h2>{{ $product->name }}</h2>
 
 	<a class="button success full buy" id="buy"
 		data-anim="#images" data-id="{{ $product->id }}">

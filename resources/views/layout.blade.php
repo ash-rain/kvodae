@@ -37,6 +37,7 @@
   <script src="{{ asset('js/jquery.js') }}"></script>
   <script src="{{ asset('js/fastclick.js') }}"></script>
   <script src="{{ asset('js/foundation.js') }}"></script>
+  <script src="{{ asset('js/app.js') }}"></script>
   @yield('scripts')
   <script>
     $(document).foundation();
