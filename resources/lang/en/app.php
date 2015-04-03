@@ -14,5 +14,5 @@ return [
 	'checkout_cancel' => 'Your have cancelled your order :(',
 	'login' => 'Login',
 	'menu' => 'Menu',
-	'checkout_description' => ':count products from kvodae.com'
+	'checkout_description' => ':count products'
 ];

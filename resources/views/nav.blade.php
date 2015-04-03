@@ -6,7 +6,7 @@
           @if(session('store_user'))
           {{ App\User::find(session('store_user'))->name }}
           @else
-          kvodae
+          Microbrander
           @endif
         </a>
       </h1>

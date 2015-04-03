@@ -14,5 +14,5 @@ return [
 	'checkout_cancel' => 'Вашата поръчка беше отказана :(',
 	'login' => 'Вход',
 	'menu' => 'Меню',
-	'checkout_description' => ':count продукта от kvodae.com'
+	'checkout_description' => ':count продукта'
 ];
