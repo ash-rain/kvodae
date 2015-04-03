@@ -52,7 +52,7 @@ function drawText() {
 		fontFamily: (drawConfig.font || "sans-serif"),
 		fontSize: (drawConfig.font_size || 14),
 		fillColor: (drawConfig.fill || "#000000"),
-		justification: (drawConfig.align || "left"),
+		justification: "center",
 		shadowColor: "rgba(0,0,0,0.2)",
 		shadowBlur: 2,
 		shadowOffset: new paper.Point(-1)
