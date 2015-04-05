@@ -24,3 +24,11 @@ $(".button.buy").click(function(){
 	setTimeout(function(){ dolly.remove() }, 500)
 	$("body").append(dolly)
 })
+
+$(".product.th").bind("mouseover click", function() {
+	$(".product.th").removeClass("active")
+	$(this).addClass("active")
+})
+$(".product.th").mouseout(function() {
+	$(".product.th").removeClass("active")
+})
