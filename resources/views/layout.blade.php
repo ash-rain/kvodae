@@ -15,9 +15,13 @@
   @yield('head')
   <script src="{{ asset('js/modernizr.js') }}"></script>
 </head>
-<body>
+<body style="background-image: url({{ $background }});">
   
-  @include('nav')
+  <header class="row">
+    <div class="small-12 columns">
+      @include('nav')
+    </div>
+  </header>
   
   <div id="content">
     <div class="row">
@@ -29,7 +33,9 @@
     <div class="small-12 columns text-right">
       <span>
         {{ trans('app.background_credits') }}
-        <a href="#">Vladimir Putin</a>
+        <a href="https://www.facebook.com/PhotographyByZlat" target="_blank">
+          Zlatina Tochkova
+        </a>
       </span>
     </div>
   </div>

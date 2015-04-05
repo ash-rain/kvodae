@@ -25,7 +25,7 @@ var token = "{{ csrf_token() }}"
 <div class="medium-6 columns">
 	<h2>{{ $product->name }}</h2>
 
-	<a class="button success full buy" id="buy"
+	<a class="button full buy" id="buy"
 		data-anim="#images" data-id="{{ $product->id }}">
 		<i class="fa fa-cart-plus"></i>
 		{{ trans('app.buy_for') }}
@@ -34,27 +34,31 @@ var token = "{{ csrf_token() }}"
 		</div>
 	</a>
 
-	<p id="shipping_info">{{ trans('product.shipping_info') }}</p>
+	<div class="product_info">
+		<div class="row collapse">
+			@if($product->description)
+			<div class="large-{{ $product->template->specs ? 6 : 12 }} columns"> 
+				<p>{!! nl2br($product->description) !!}</p>
+			</div>
+			@endif
+			
+			@if($product->template->specs)
+			<div class="large-{{ $product->description ? 6 : 12 }} columns"> 
+				<table class="full specs" cellspacing="0">
+					@foreach($product->template->specs as $key => $value)
+					<tr>
+						<td class="key" width="20">{{ trans('specs.' . $key) }}</td>
+						<td class="text-right">{{ $value }}</td>
+					</tr>
+					@endforeach
+				</table>
+			</div>
+			@endif
+		</div>
 
-	<div class="row collapse">
-		@if($product->description)
-		<div class="large-6 columns"> 
-			<p>{!! nl2br($product->description) !!}</p>
+		<div id="shipping_info">
+			{{ trans('product.shipping_info') }}
 		</div>
-		@endif
-		
-		@if($product->template->specs)
-		<div class="large-6 columns"> 
-			<table class="full specs" cellspacing="0">
-				@foreach($product->template->specs as $key => $value)
-				<tr>
-					<td class="key" width="20">{{ trans('specs.' . $key) }}</td>
-					<td class="text-right">{{ $value }}</td>
-				</tr>
-				@endforeach
-			</table>
-		</div>
-		@endif
 	</div>
 </div>
 

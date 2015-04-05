@@ -10,10 +10,10 @@ var token = "{{ csrf_token() }}"
 <div class="row">
 	<div class="medium-5 large-4 columns">
 		<h1>
-			<a>{{ trans('product.index') }}</a>
+			{{ trans('product.index') }}
 		</h1>
 		<hr />
-		<h2 class="filter">
+		<div class="filter">
 			<button class="dropdown" data-dropdown="drop_order_by">
 				{{ trans('filter.order_by') }}
 			</button>
@@ -47,7 +47,7 @@ var token = "{{ csrf_token() }}"
 				@endforeach
 
 			</div>
-		</h2>
+		</div>
 	</div>
 	<div class="medium-7 large-8 columns">
 		<ul class="small-block-grid-2 large-block-grid-3">

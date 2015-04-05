@@ -1,16 +1,18 @@
 <?php namespace App\Providers;
 
+use File;
+use View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider {
 
-	/**
-	 * Bootstrap any application services.
-	 *
-	 * @return void
-	 */
 	public function boot()
 	{
+		$bgs = File::files(public_path('bg'));
+		$bgi = array_rand($bgs);
+		$bg = str_replace(public_path(), '', $bgs[$bgi]);
+		View::share('background', $bg);
+
 		\Blade::extend(function($view, $compiler)
 		{
 			$pattern = $compiler->createOpenMatcher('price');
@@ -18,15 +20,6 @@ class AppServiceProvider extends ServiceProvider {
 		});
 	}
 
-	/**
-	 * Register any application services.
-	 *
-	 * This service provider is a great spot to register your various container
-	 * bindings with the application. As you can see, we are registering our
-	 * "Registrar" implementation here. You can add your own bindings too!
-	 *
-	 * @return void
-	 */
 	public function register()
 	{
 		$this->app->bind(

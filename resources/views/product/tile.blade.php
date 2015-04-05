@@ -2,7 +2,7 @@
 	style="background-image: url({{ url('/images/' . $product->images[0]->id) }})">
 	<div class="action row collapse trans-opacity">
 		<div class="small-6 columns">
-			<a class="success button full trans-opacity buy"
+			<a class="button full trans-opacity buy"
 				data-id="{{ $product->id }}">
 				<div class="y-center">
 					<p>
