@@ -64,7 +64,7 @@ var token = "{{ csrf_token() }}"
 
 <div class="small-12 columns">
 	<h2>{{ trans('product.related') }}</h2>
-	<ul class="small-block-grid-2 large-block-grid-4">
+	<ul class="small-block-grid-1 large-block-grid-4">
 	@foreach($related as $product)
 		<li>
 		@include('product.tile')

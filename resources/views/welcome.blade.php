@@ -12,7 +12,7 @@ var token = "{{ csrf_token() }}"
 
 <h1>{{ trans('product.latest') }}</h1>
 
-<ul class="medium-block-grid-4">
+<ul class="small-block-grid-2 medium-block-grid-4">
 @foreach($latest as $product)
 	<li>@include('product.tile')</li>
 @endforeach
