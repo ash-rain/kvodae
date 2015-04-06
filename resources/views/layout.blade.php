@@ -16,7 +16,7 @@
   <script src="{{ asset('js/modernizr.js') }}"></script>
 </head>
 <body style="background-image: url({{ $background }});">
-
+<div class="fadein">
   <header class="row">
     <div class="small-12 columns">
       @include('nav')
@@ -45,7 +45,7 @@
       </span>
     </div>
   </div>
-
+</div>
   <script src="{{ asset('js/jquery.js') }}"></script>
   <script src="{{ asset('js/fastclick.js') }}"></script>
   <script src="{{ asset('js/foundation.js') }}"></script>

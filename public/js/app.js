@@ -37,7 +37,7 @@ $(".product.th").mouseout(function() {
 })
 
 $(document).ready(function(){
-	$("body").fadeIn(500).css("display", "block");
+	$(".fadein").fadeIn(500).css("display", "block");
 })
 
 
