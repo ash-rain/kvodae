@@ -2,9 +2,7 @@
 <html lang="{{ App::getLocale() }}">
 <head>
   <title>@yield('title')</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+  @include('header')
   
   <link href='http://fonts.googleapis.com/css?family=Comfortaa:400,700&subset=latin,cyrillic,cyrillic-ext' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="{{ asset('css/foundation.css') }}">
