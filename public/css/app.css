@@ -1,11 +1,14 @@
 body {
-	display: none;
 	overflow-x: hidden;
 	font-family: 'Comfortaa', cursive;
 	background-attachment: fixed;
 	background-color: #333;
 	background-size: cover;
 	background-position: center;
+}
+
+.fadein {
+	display: none;
 }
 
 h1, h2, h3, .top-bar a, .filter button {
