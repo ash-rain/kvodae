@@ -1,5 +1,6 @@
 <?php namespace App\Providers;
 
+use Blade;
 use File;
 use View;
 use Illuminate\Support\ServiceProvider;
@@ -13,7 +14,7 @@ class AppServiceProvider extends ServiceProvider {
 		$bg = str_replace(public_path(), '', $bgs[$bgi]);
 		View::share('background', $bg);
 
-		\Blade::extend(function($view, $compiler)
+		Blade::extend(function($view, $compiler)
 		{
 			$pattern = $compiler->createOpenMatcher('price');
 			return preg_replace($pattern, '$1<?php echo $2->finalPrice .\' \'. config(\'app.currency\')); ?>', $view);

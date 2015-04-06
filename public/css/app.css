@@ -1,4 +1,5 @@
 body {
+	display: none;
 	overflow-x: hidden;
 	background-attachment: fixed;
 	background-color: #ccc;
@@ -31,7 +32,10 @@ a:hover { color: #f72; }
 	padding: 0;
 }
 
-.top-bar { background: none; }
+.top-bar {
+	background: none;
+	margin: 10vh;
+}
 
 .top-bar a {
 	font-size: 1.2rem !important;
@@ -163,6 +167,10 @@ h1 a {
 	transition: opacity .5s;
 }
 
+.th {
+	background: rgba(255,255,255,.5);
+}
+
 .product.th {
 	position: relative;
 	overflow: hidden;
@@ -233,7 +241,10 @@ h1 a {
 }
 
 .filter .dropdown:hover {
-	color: #777;
+	color: #f30;
+}
+.filter .dropdown:hover:after {
+	border-color: #f30 transparent transparent;
 }
 
 .filter .dropdown:after {

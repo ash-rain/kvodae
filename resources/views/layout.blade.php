@@ -37,6 +37,12 @@
           Zlatina Tochkova
         </a>
       </span>
+      <br />
+      <span>
+        <a href="https://github.com/ash-rain/microbrander" target="_blank">
+          {{ trans('app.open_source') }}
+        </a>
+      </span>
     </div>
   </div>
 
