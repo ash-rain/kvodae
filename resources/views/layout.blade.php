@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" style="background: #333">
+<html style="background-image: url({{ $background }});" lang="{{ App::getLocale() }}">
 <head>
   <title>@yield('title')</title>
   <meta charset="utf-8">
@@ -15,7 +15,7 @@
   @yield('head')
   <script src="{{ asset('js/modernizr.js') }}"></script>
 </head>
-<body style="background-image: url({{ $background }});">
+<body>
   
   <header class="row">
     <div class="small-12 columns">
