@@ -15,5 +15,6 @@ return [
 	'login' => 'Login',
 	'menu' => 'Menu',
 	'checkout_description' => ':count products',
-	'background_credits' => 'background photo by'
+	'background_credits' => 'background photo by',
+	'open_source' => 'We are open source :)'
 ];
