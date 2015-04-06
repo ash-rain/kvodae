@@ -38,7 +38,7 @@ class ProductController extends Controller {
 	public function show(Product $product)
 	{
 		$related = Product::whereTemplateId($product->template_id)
-			->where('id', '!=', $product->id)->get();
+			->where('id', '!=', $product->id)->limit(6)->get();
 		return view('product.show', compact('product', 'related'));
 	}
 	

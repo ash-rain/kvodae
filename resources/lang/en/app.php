@@ -17,5 +17,7 @@ return [
 	'menu' => 'Menu',
 	'checkout_description' => ':count products',
 	'background_credits' => 'background photo by',
-	'copyright' => 'microbrander.com'
+	'copyright' => 'microbrander.com',
+	'welcome' => "Microbrander allows you to create and sell custom advertising products from predefined templates.\nWe take care of the manufacturing, payment processing and delivery for you.\nAll you have to do is choose a template, customize it, set an (optional) additional price and start selling.\nYou can also have your own online store hosted on microbrander.com for free.",
+	'get_started' => 'get started'
 ];

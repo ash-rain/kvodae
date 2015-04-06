@@ -10,6 +10,14 @@ var token = "{{ csrf_token() }}"
 
 @section('content')
 
+<div class="welcome framed-white text-center">
+	<p>{!! nl2br(trans('app.welcome')) !!}</p>
+	<a class="framed button" href="{{ action('Auth\AuthController@getIndex') }}">
+		<i class="fa fa-fw fa-sign-in"></i>
+		{{ trans('app.get_started') }}
+	</a>
+</div>
+
 <h1>{{ trans('product.latest') }}</h1>
 
 <ul class="small-block-grid-2 medium-block-grid-4">

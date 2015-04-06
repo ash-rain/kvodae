@@ -6,17 +6,13 @@
 
 <h1>
 	{{ trans('template.index') }}
-	<a class="button right" href="{{ action('TemplateController@create') }}">
-		<i class="fa fa-plus"></i>
-		{{ trans('app.create') }}
-	</a>
 </h1>
 
 <ul class="small-block-grid-2 medium-block-grid-4">
 @foreach($templates as $template)
 	<li>
 		<a href="{{ action('TemplateController@show', $template->id) }}">
-		<div class="product th"
+		<div class="product th framed-white"
 			style="background-image: url(/images/{{ $template->images[0]->id }})">
 			<div class="info row collapse trans-opacity">
 				<div class="small-12 columns">

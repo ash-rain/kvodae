@@ -28,11 +28,20 @@ $(".button.buy").click(function(){
 	$("body").append(dolly)
 })
 
-$(".product.th").bind("mouseover click", function() {
-	$(".product.th").removeClass("active")
-	$(this).addClass("active")
+// Product tile actions
+var to
+
+$(".product.th").bind("mouseenter click", function() {
+	if(to) clearTimeout(to)
+	to = setTimeout(function(me) {
+		return function() {
+			$(".product.th").removeClass("active")
+			$(me).addClass("active")
+		}
+	}(this), 50)
 })
-$(".product.th").mouseout(function() {
+
+$(".product.th").mouseleave(function() {
 	$(".product.th").removeClass("active")
 })
 
