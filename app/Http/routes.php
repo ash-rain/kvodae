@@ -18,10 +18,12 @@ Route::controllers([
 Route::model('templates', 'App\Template');
 Route::model('products', 'App\Product');
 Route::model('images', 'App\Image');
+Route::model('mes', 'App\User');
 
 Route::resources([
 	'templates' => 'TemplateController',
 	'products' => 'ProductController',
 	'images' => 'ImageController',
 	'cart' => 'CartController',
+	'me' => 'UserController',
 ]);

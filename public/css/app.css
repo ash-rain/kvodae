@@ -18,9 +18,15 @@ h1, h2, h3, .top-bar a, .filter button {
 }
 
 .subtitle {
-	color: #666;
 	font-size: .5em;
 	line-height: 2.5em;
+}
+
+.label {
+	background: rgba(0,0,0,.8);
+	margin: 1rem 0;
+	display: block;
+	font-size: 1.2em;
 }
 
 a { color: #666; }
@@ -28,6 +34,16 @@ a:hover { color: #f72; }
 
 .button { background-color: rgba(0,0,0,.8); }
 .button:hover { background-color: #000; }
+
+h1 .button.right { margin-left: 1rem; }
+
+.framed, .framed:hover, #cart {
+	box-shadow: 0px 0px 0px 5px rgba(0,0,0,.3);
+}
+
+.framed-white, .framed-white:hover {
+	box-shadow: 0px 0px 0px 4px rgba(255,255,255,.3);   
+}
 
 #logo:hover { background: none !important; }
 
@@ -40,29 +56,32 @@ a:hover { color: #f72; }
 	margin: 10vh;
 }
 
+.top-bar.expanded .title-area,
+.top-bar.expanded ul { background: rgba(0,0,0,.5) }
+
 .top-bar a {
-	font-size: 1.2rem !important;
+	font-size: 1.6rem !important;
 	font-weight: bold;
 	color: #eee !important;
 	background: none !important;
+}
+
+.top-bar .right a {
+	font-size: 1.2rem !important;
 }
 
 .top-bar ul li {
 	background: none;
 }
 
-.top-bar a:hover {
-	background: rgba(0,0,0,.5) !important;
-	color: #fff !important;
-}
-
-.top-bar li.active a {
-	background: none !important;
+.top-bar a:hover,
+.top-bar .active a {
+	background: rgba(255,255,255,.3) !important;
 	color: #fff !important;
 }
 
 .top-bar .dropdown {
-	background-color: rgba(0,0,0,.7);
+	background-color: rgba(0,0,0,.8);
 }
 
 .top-bar .dropdown .active {
@@ -105,7 +124,11 @@ h1 a {
 	text-align: left;
 }
 
-.product_info {
+#pay {
+	font-size: 1.4rem;
+}
+
+.product-info {
 	padding: .5em;
 	background-color: rgba(255,255,255,0.7);
 }
@@ -129,7 +152,20 @@ h1 a {
 	line-height: 1em;
 }
 
-.specs .key { opacity: .5; }
+.specs .text-right { font-weight: 700; }
+
+.form {
+	margin-top: 2rem;
+	padding: 1rem 1rem .2rem 1rem;
+	background: rgba(255,255,255,.5);
+	margin-bottom: 1rem;
+}
+
+.form label {
+	color: #000;
+	font-weight: 700;
+	margin-bottom: .5em;
+}
 
 #footer {
 	padding: 60vh 0 10vh 0;
@@ -171,7 +207,8 @@ h1 a {
 }
 
 .th {
-	background: rgba(255,255,255,.5);
+	padding: 0;
+	border: none;
 }
 
 .product.th {

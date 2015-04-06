@@ -1,7 +1,5 @@
 @extends('layout')
 
-@include('shared.number')
-
 @section('js')
 $("input[name='quantity']").bind("keyup", function() {
 	var q = parseInt($(this).val())
@@ -27,17 +25,13 @@ $("[data-delete]").click(function() {
 @if(count($cart))
 
 <h1>
-	<a class="button success right" href="{{ action('CheckoutController@getIndex') }}">
+	<a class="button framed right" id="pay"
+		href="{{ action('CheckoutController@getIndex') }}">
 		<i class="fa fa-paypal"></i>
 		{{ trans('app.checkout') }}
+		{{ Cart::getTotal() }}
+		{{ config('app.currency') }}
 	</a>
-	<div class="right" style="padding-right: 1em">
-		<div class="subtitle">
-			{{ trans('app.cart_total') }}
-			{{ Cart::getTotal() }}
-			{{ config('app.currency') }}
-		</div>
-	</div>
 	{{ trans('app.cart') }}
 </h1>
 
@@ -57,7 +51,7 @@ $("[data-delete]").click(function() {
 							href="{{ action('ProductController@show', $item['id']) }}">
 							<div class="y-center">
 								<p>
-									<i class="fa fa-2x fa-search-plus buy"></i>
+									<i class="fa fa-2x fa-search-plus"></i>
 								</p>
 								<p></p>
 								{{ trans('product.more_info') }}
@@ -80,11 +74,15 @@ $("[data-delete]").click(function() {
 			</div>
 		</div>
 		<div class="small-6 columns">
-			<h4>{{ $item['name'] }}</h4>
-			@price($item['product'])
-			<h5 class="subheader">
-				{{ $item['product']->template->name }}
-			</h5>
+			<h2>
+				{{ $item['name'] }}
+				<div class="subtitle">
+					<div class="framed label">@price($item['product'])</div>
+					<div class="framed label">
+						{{ $item['product']->template->name }}
+					</div>
+				</div>
+			</h2>
 		</div>
 	</div>
 	{!! Form::close() !!}
@@ -93,7 +91,10 @@ $("[data-delete]").click(function() {
 </ul>
 @else
 <div class="text-center">
-	<i>{{ trans('Your cart is empty') }}</i>
+	<h2>
+		<i class="fa fa-info-circle"></i>
+		{{ trans('Your cart is empty') }}
+	</h2>
 </div>
 @endif
 @stop

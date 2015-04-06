@@ -21,17 +21,14 @@
       <li class="has-dropdown">
         <a>
           <div class="clearfix">
-            <span class="flag left flag-icon-background flag-icon-{{ App::getLocale() == 'en' ? 'gb' : App::getLocale() }}">&nbsp; &nbsp; &nbsp;</span>
-            <span class="show-for-small-only">
-              &nbsp; {{ config('app.locales')[App::getLocale()] }}
+            {{ App::getLocale() }}
             </span>
           </div>
         </a>
-        <ul class="dropdown">
+        <ul class="framed dropdown">
           @foreach (config('app.locales') as $locale => $display)
             <li {!! App::getLocale() == $locale ? 'class="active"' : '' !!}>
               <a href="{{ url("/language/$locale") }}">
-                <span class="flag flag-icon-background flag-icon-{{ $locale == 'en' ? 'gb' : $locale }}">&nbsp; &nbsp; &nbsp;</span>
                 {{ $display }}
               </a>
             </li>
@@ -40,7 +37,7 @@
       </li>
       <li>
         @if(Auth::check())
-        <a href="{{ action('Auth\AuthController@getLogout') }}">
+        <a href="{{ action('UserController@index') }}">
           {{ Auth::user()->name }}
         </a>
         @else
@@ -50,7 +47,7 @@
         </a>
         @endif
       </li>
-      <li>
+      <li class="{{ Request::is('cart') ? 'active' : '' }}">
         <a href="{{ action('CartController@index') }}"
           style="position: relative; padding-right: 4rem;">
           <i class="fa fa-shopping-cart"></i>
@@ -64,10 +61,10 @@
       </li>
     </ul>
     <ul class="left">
-      <li class="{{ Request::is('templates/*') ? 'active' : '' }}">
+      <li class="{{ Request::is('templates', 'templates/*') ? 'active' : '' }}">
         <a href="{{ action('TemplateController@index') }}">{{ trans('Templates') }}</a>
       </li>
-      <li class="{{ Request::is('products/*') ? 'active' : '' }}">
+      <li class="{{ Request::is('products', 'products/*') ? 'active' : '' }}">
         <a href="{{ action('ProductController@index') }}">{{ trans('Products') }}</a>
       </li>
     </ul>

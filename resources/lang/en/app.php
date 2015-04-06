@@ -13,8 +13,9 @@ return [
 	'checkout_done' => 'Your order\'s been received :)',
 	'checkout_cancel' => 'Your have cancelled your order :(',
 	'login' => 'Login',
+	'logout' => 'Log out',
 	'menu' => 'Menu',
 	'checkout_description' => ':count products',
 	'background_credits' => 'background photo by',
-	'open_source' => 'We are open source :)'
+	'copyright' => 'microbrander.com'
 ];

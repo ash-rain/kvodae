@@ -29,22 +29,7 @@
     </div>
   </div>
 
-  <div id="footer" class="row">
-    <div class="small-12 columns text-right">
-      <span>
-        {{ trans('app.background_credits') }}
-        <a href="https://www.facebook.com/PhotographyByZlat" target="_blank">
-          Zlatina Tochkova
-        </a>
-      </span>
-      <br />
-      <span>
-        <a href="https://github.com/ash-rain/microbrander" target="_blank">
-          {{ trans('app.open_source') }}
-        </a>
-      </span>
-    </div>
-  </div>
+  @include('footer')
 </div>
   <script src="{{ asset('js/jquery.js') }}"></script>
   <script src="{{ asset('js/fastclick.js') }}"></script>

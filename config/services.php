@@ -5,7 +5,7 @@ return [
 	'microweber' => [
 	    'client_id' => env('MW_CLIENT'),
 	    'client_secret' => env('MW_SECRET'),
-	    'redirect' => getenv('SITE_URL') . '/auth/callback'
+	    'redirect' => getenv('SITE_URL') . 'auth/callback'
 	],
 
 	'mailgun' => [

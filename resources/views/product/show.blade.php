@@ -9,9 +9,9 @@ var token = "{{ csrf_token() }}"
 @section('content')
 
 @if(count($product->images))
-<div class="medium-6 columns" id="images">
+<div class="medium-6 columns text-right" id="images">
 	@foreach($product->images as $image)
-	<a class="th" data-reveal-id="image-{{ $image->id }}">
+	<a class="th framed-white" data-reveal-id="image-{{ $image->id }}">
 		@include('image.show', compact('image'))
 	</a>
 	<div id="image-{{ $image->id }}" data-reveal role="dialog"
@@ -23,9 +23,7 @@ var token = "{{ csrf_token() }}"
 @endif
 
 <div class="medium-6 columns">
-	<h2>{{ $product->name }}</h2>
-
-	<a class="button full buy" id="buy"
+	<a class="framed button full buy" id="buy"
 		data-anim="#images" data-id="{{ $product->id }}">
 		<i class="fa fa-cart-plus"></i>
 		{{ trans('app.buy_for') }}
@@ -34,7 +32,9 @@ var token = "{{ csrf_token() }}"
 		</div>
 	</a>
 
-	<div class="product_info">
+	<h2>{{ $product->name }}</h2>
+
+	<div class="framed-white product-info">
 		<div class="row collapse">
 			@if($product->description)
 			<div class="large-{{ $product->template->specs ? 6 : 12 }} columns"> 
