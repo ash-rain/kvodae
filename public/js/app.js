@@ -36,8 +36,8 @@ $(".product.th").mouseout(function() {
 	$(".product.th").removeClass("active")
 })
 
-$(document).load(function(){
-	$("body").fadeIn(500);
+$(document).ready(function(){
+	$("body").fadeIn(500).css("display", "block");
 })
 
 
