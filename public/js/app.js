@@ -1,3 +1,6 @@
+$(function) {
+
+
 $(".button.buy").click(function(){
 	// Add to cart
 	$.post("/cart", { _token: token, id: $(this).data("id") }, function(m) {
@@ -31,4 +34,11 @@ $(".product.th").bind("mouseover click", function() {
 })
 $(".product.th").mouseout(function() {
 	$(".product.th").removeClass("active")
+})
+
+$(document).load(function(){
+	$("body").fadeIn(500);
+})
+
+
 })
