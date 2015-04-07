@@ -1,3 +1,6 @@
+@if($notifications > 0)
+<badge version="1" value="{{ $notifications }}" />
+@endif
 <tile>
   <visual>
     <binding template="TileSquarePeekImageAndText01">
