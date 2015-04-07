@@ -3,7 +3,7 @@
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
 <meta name="application-name" content="microbrander" />
-<meta name="msapplication-config" content="browserconfig.xml" />
+<meta name="msapplication-config" content="{{ url('browserconfig.xml') }}" />
 
   
 <link href='http://fonts.googleapis.com/css?family=Comfortaa:400,700&subset=latin,cyrillic,cyrillic-ext' rel='stylesheet' type='text/css'>
