@@ -3,3 +3,4 @@
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
 <meta name="application-name" content="microbrander" />
+<meta name="msapplication-config" content="{{ url('browserconfig.xml') }}" />
