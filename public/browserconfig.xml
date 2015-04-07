@@ -6,7 +6,7 @@
 			<square150x150logo src="img/square.png"/>
 			<wide310x150logo src="img/wide.png"/>
 			<square310x310logo src="img/large.png"/>
-			<TileColor>#333333</TileColor>
+			<TileColor>transparent</TileColor>
 		</tile>
 		<notification>
 			<polling-uri src="notifications/rss"/>
