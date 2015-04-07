@@ -1,5 +1,5 @@
 <div class="product th framed-white"
-	style="background-image: url({{ url('/images/' . $product->images[0]->id) }})">
+	style="background-image: url({{ count($product->images) ? url('/images/' . $product->images[0]->id) : url('/img/placeholder.png') }})">
 	<div class="action row collapse trans-opacity">
 		<div class="small-6 columns">
 			<a class="button full trans-opacity buy"

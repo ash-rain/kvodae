@@ -13,12 +13,18 @@ class ImageController extends Controller {
 		$this->middleware('auth', ['except' => 'show']);
 	}
 
-	public function show(Image $image)
+	public function show(Image $image, Request $request)
 	{
 		$file = storage_path('images/' . $image->id);
+		
+		if(!is_null($request->input('original'))) {
+			return Intervention::make($file)->response('jpg');
+		}
+
 		$img = Intervention::cache(function($image) use ($file) {
 			return $image->make($file)->fit(600, 400);
 		}, 3600, true);
+		
 		return $img->response('jpg', 60);
 	}
 

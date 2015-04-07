@@ -1,11 +1,5 @@
 @extends('layout')
 
-@section('js')
-$(".submit.button").click(function() {
-	$("form").submit()
-})
-@stop
-
 @section('content')
 
 {!! Form::model($user, ['url' => action('UserController@update')]) !!}

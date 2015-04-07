@@ -11,8 +11,13 @@
         </a>
       </h1>
     </li>
-    <li class="toggle-topbar menu-icon">
-      <a href="javascript:void(0)"><span>{{ trans('app.menu') }}</span></a>
+    <li class="toggle-topbar">
+      <a href="javascript:void(0)">
+        <span>
+          {{ trans('app.menu') }}
+          <i class="fa fa-bars"></i>
+        </span>
+      </a>
     </li>
   </ul>
 

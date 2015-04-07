@@ -53,7 +53,7 @@ h1 .button.right { margin-left: 1rem; }
 
 .top-bar {
 	background: none;
-	margin: 10vh;
+	margin: 10vh 0;
 }
 
 .top-bar.expanded .title-area,
@@ -157,7 +157,7 @@ h1 a {
 .form, .welcome {
 	margin-top: 2rem;
 	padding: 1rem 1rem .2rem 1rem;
-	background: rgba(255,255,255,.5);
+	background: rgba(255,255,255,.7);
 	margin-bottom: 1rem;
 }
 
@@ -168,6 +168,14 @@ h1 a {
 }
 
 .welcome p { font-size: 1.2em; }
+
+.welcome a:not(.button) { color: #000; }
+
+.welcome { padding-bottom: 1rem; }
+
+.welcome h3 {
+	color: #000; text-shadow: none;
+}
 
 #footer {
 	padding: 60vh 0 10vh 0;

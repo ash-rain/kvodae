@@ -52,7 +52,7 @@ class ProductController extends Controller {
 		$input = $request->only(['name', 'price', 'text', 'description']);
 		$product->fill($input);
 		$product->save();
-		return redirect(action('ProductController@show', $product->id));
+		return redirect(action('ProductController@edit', $product->id));
 	}
 
 	public function destroy(Product $product)

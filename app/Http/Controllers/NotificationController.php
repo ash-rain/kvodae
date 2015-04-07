@@ -8,8 +8,8 @@ class NotificationController extends Controller {
 
 	public function getRss()
 	{
-		$product = Product::take(1)->first();
-		$view = View::make('livetile', compact('product'));
+		$products = Product::take(3)->get();
+		$view = View::make('livetile', compact('products'));
 		return Response::make($view, 200, ['Content-type' => 'application/rss+xml; charset=utf-8']);
 	}
 

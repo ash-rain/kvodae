@@ -1,3 +1,4 @@
+@foreach ($products as $product)
 <tile>
    <visual lang="en-US" version="2">
       <binding template="TileSquare310x310ImageAndTextOverlay02" branding="name">
@@ -14,3 +15,4 @@
       </binding>
    </visual>
 </tile>
+@endforeach

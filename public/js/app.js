@@ -50,4 +50,9 @@ $(document).ready(function(){
 })
 
 
+$(".submit.button").click(function() {
+	$("form")[0].submit()
+})
+
+
 })

@@ -3,12 +3,6 @@
 <head>
   <title>@yield('title')</title>
   @include('header')
-  
-  <link href='http://fonts.googleapis.com/css?family=Comfortaa:400,700&subset=latin,cyrillic,cyrillic-ext' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="{{ asset('css/foundation.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/font-awesome.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/flag-icon.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
   <style>@yield('css')</style>
   @yield('head')
   <script src="{{ asset('js/modernizr.js') }}"></script>
