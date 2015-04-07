@@ -91,7 +91,8 @@ return [
 		'Netshell\Paypal\PaypalServiceProvider',
 		'Laravel\Socialite\SocialiteServiceProvider',
  		'Laravel\Cashier\CashierServiceProvider',
- 		
+		'Intervention\Image\ImageServiceProvider',
+
 		/*
 		 * Application Service Providers...
 		 */
@@ -153,6 +154,7 @@ return [
 		'Cart' => 'Darryldecode\Cart\Facades\CartFacade',
 		'PayPal'   => 'Netshell\Paypal\Facades\Paypal',
 		'Socialite' => 'Laravel\Socialite\Facades\Socialite',
+		'Image' => 'Intervention\Image\Facades\Image',
 
 	],
 

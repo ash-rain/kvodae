@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Response;
 use File;
+use Image as Intervention;
 use App\Image;
 
 class ImageController extends Controller {
@@ -14,7 +15,11 @@ class ImageController extends Controller {
 
 	public function show(Image $image)
 	{
-		return Response::download(storage_path('images/' . $image->id));
+		$file = storage_path('images/' . $image->id);
+		$img = Intervention::cache(function($image) use ($file) {
+			return $image->make($file)->fit(600, 400);
+		}, 3600, true);
+		return $img->response('jpg', 60);
 	}
 
 	public function store(Request $request)
