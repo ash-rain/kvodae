@@ -1,23 +1,16 @@
 <tile>
-  <visual>
-    <binding template="TileSquarePeekImageAndText01">
-      <image id="1" src="image1" alt="alt text"/>
-      <text id="1">Text Field 1 (larger text)</text>
-      <text id="2">Text Field 2</text>
-      <text id="3">Text Field 3</text>
-      <text id="4">Text Field 4</text>
-    </binding>  
-  </visual>
-</tile>
-
-<tile>
-  <visual version="2">
-    <binding template="TileSquare150x150PeekImageAndText01" fallback="TileSquarePeekImageAndText01">
-      <image id="1" src="image1" alt="alt text"/>
-      <text id="1">Text Field 1 (larger text)</text>
-      <text id="2">Text Field 2</text>
-      <text id="3">Text Field 3</text>
-      <text id="4">Text Field 4</text>
-    </binding>  
-  </visual>
+   <visual lang="en-US" version="2">
+      <binding template="TileSquare310x310ImageAndTextOverlay02" branding="name">
+         <image id="1" src="/images/{{ $product->images[0]->id }}" />
+         <text id="1">{{ $product->name }} </text>
+         <text id="2">{{ $product->finalPrice .' '. config('app.checkout_currency') }}</text>
+      </binding>
+      <binding template="TileWide310x150ImageAndText01" branding="logo">
+         <image id="1" src="/images/{{ $product->images[0]->id }}" />
+         <text id="1">{{ $product->name }} </text>
+      </binding>
+      <binding template="TileSquare150x150Image" branding="name">
+         <image id="1" src="/images/{{ $product->images[0]->id }}" />
+      </binding>
+   </visual>
 </tile>
