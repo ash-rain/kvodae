@@ -14,7 +14,6 @@
     <li class="toggle-topbar">
       <a href="javascript:void(0)">
         <span>
-          {{ trans('app.menu') }}
           <i class="fa fa-bars"></i>
         </span>
       </a>
