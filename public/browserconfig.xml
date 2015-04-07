@@ -11,7 +11,7 @@
 		<notification>
 			<polling-uri src="notifications/rss"/>
 			<frequency>30</frequency>
-			<cycle>0</cycle>
+			<cycle>1</cycle>
 		</notification>
 	</msapplication>
 </browserconfig>
