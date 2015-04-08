@@ -126,7 +126,7 @@ $(".image-upload").each(function() {
 				if(me.is(".new")) location.reload()
 				else {
 					$("#image").html(data)
-					drawText()
+					canvasInit()
 				}
 			},
 			error: function(jqXHR, textStatus, errorThrown) {

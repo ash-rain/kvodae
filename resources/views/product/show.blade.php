@@ -16,7 +16,7 @@ var token = "{{ csrf_token() }}"
 	</a>
 	<div id="image-{{ $image->id }}" data-reveal role="dialog"
 		class="reveal-modal" style="text-align: center;">
-		@include('image.show', compact('image'))
+		@include('image.show', ['image' => $image, 'original' => true])
 	</div>
 	@endforeach
 </div>
