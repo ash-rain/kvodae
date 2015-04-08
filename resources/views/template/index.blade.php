@@ -4,10 +4,6 @@
 
 @section('content')
 
-<h1>
-	{{ trans('template.index') }}
-</h1>
-
 <ul class="small-block-grid-2 medium-block-grid-4">
 @foreach($templates as $template)
 	<li>

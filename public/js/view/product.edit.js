@@ -1,44 +1,54 @@
 var canvas = $("canvas")[0]
 var zoom = 1
 
-$(function(){
+$(document).ready(function(){
 	var img = $("#image img")
-	var h = ($(canvas).width() / img.data("width")) * img.data("height");
-	zoom = $(canvas).width() / img.data("width")
-	$(canvas).height(h).show()
-	img.hide()
-	drawText()
+	img.load(canvasInit)
+	if(img[0].complete) img.load()
 })
 
-$("[name='text']").keyup(drawText)
+function canvasInit() {
+	var img = $("#image img")
+	if(img.width() == 0) {
+		// we all have secrets
+		setTimeout(canvasInit, 100)
+		return
+	}
+	var h = ($(canvas).width() / img.data("width")) * img.data("height");
+	zoom = $(canvas).width() / img.data("width")
+	$(canvas).height(h)
+	img.hide()
+	drawText()
+}
 
-$("form").submit(function(e) {
-	e.preventDefault()
-	e.returnValue = false
+// save timeout
+var saveTO;
+$("input[name='text']").keyup(function() {
+	var name = $("input[name='name']");
+	var text = $(this).val()
+	if(name.data("copy")) name.val(text).focusout()
+	drawText()
+	if(saveTO) clearTimeout(saveTO)
+	saveTO = setTimeout(saveImage, 500)
+})
 
-	var data = canvas.toDataURL()
-	var form = $(this)
+$("input[name='name']").focusout(function() {
+	var eq = $(this).val() == $("input[name='text']").val() || !$(this).val().length
+	$(this).data("copy", eq)
+}).focusout();
 
+function saveImage() {
 	$.ajax({
 		type: "post",
 		url: postUrl,
 		data: { 
-			data: data,
+			data: canvas.toDataURL(),
 			imageable_id: productId,
 			_method: $("#image").is(".new") ? "POST" : "PATCH",
 			_token: $("input[name='_token']").val()
-		},
-		context: form,
-		complete: function() {
-			if($("#image").is(".new")) location.reload()
-			else {
-				this.unbind("submit");
-				this.submit()
-			}	
 		}
 	})
-	return false
-})
+}
 
 function drawText() {
 	var text = $("[name='text']").val()

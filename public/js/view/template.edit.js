@@ -1,21 +1,23 @@
 var canvas = $("canvas")[0]
-var zoom = false
+var zoom = 1
 
-$(canvas).hide()
-$(function(){
+$(document).ready(function(){
+	var img = $("#image img")
+	img.load(canvasInit)
+	if(img[0].complete) img.load()
+})
+
+function canvasInit() {
 	var img = $("#image img")
 	if(img.data("width")) {
 		var h = ($(canvas).width() / img.data("width")) * img.data("height");
 		zoom = $(canvas).width() / img.data("width")
-		$(canvas).height(h).show()
+		console.log($(canvas).width())
+		$(canvas).height(h)
 		$("#image").hide()
 		drawText()
 	}
-})
-
-$("form").submit(function(){
-	$("input[name='draw_data']").val(JSON.stringify(drawConfig))
-})
+}
 
 $("input[name='text']").bind("keyup change", function() {
 	text = $(this).val()
@@ -36,20 +38,19 @@ $("input[name='fill']").minicolors({
 		drawText()
 	}
 })
-$("input[name='rotate']").mousedown(function() {
-	$(this).mousemove(function() {
-		drawConfig.rotate = $(this).val()
+
+$("#rotate").on('change.fndtn.slider', function(){
+	if(drawConfig) {
+		drawConfig.rotate = $(this).attr("data-slider")
 		drawText()
-	}).mouseup(function() {
-		$(this).unbind("mousemove")
-	})
-}).change(function() {
-	drawConfig.rotate = $(this).val()
-	drawText()
+	}
 })
-$("input[name='skewX']").change(function() {
-	drawConfig.skewX = $(this).val()
-	drawText()
+
+$("#skew").on('change.fndtn.slider', function(){
+	if(drawConfig) {
+		drawConfig.skewX = $(this).attr("data-slider")
+		drawText()
+	}
 })
 
 // Drag text
@@ -63,6 +64,7 @@ $(canvas).mousedown(function(e) {
 	drago = { x: e.clientX, y: e.clientY }
 	dragt = { x: parseInt(drawConfig.x || 0), y: parseInt(drawConfig.y || 0) }
 })
+
 $(document).mousemove(function(e) {
 	if(!dragging) return
 	var dragd = { x: (e.clientX - drago.x), y: (e.clientY - drago.y) }
@@ -95,7 +97,10 @@ function drawText() {
 		t.rotate(drawConfig.rotate)
 	if(drawConfig.x && drawConfig.y)
 		t.translate(new paper.Point(drawConfig.x, drawConfig.y))
-	paper.view.draw();
+	paper.view.draw()
+
+	$("input[name='draw_data']").val(JSON.stringify(drawConfig))
+
 }
 
 $(".image-upload").each(function() {

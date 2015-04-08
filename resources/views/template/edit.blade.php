@@ -24,33 +24,15 @@ var text = "{{ trans('template.sample_text') }}"
 
 {!! Form::model($template, [ 'url' => action('TemplateController@update', $template->id), 'method' => 'patch' ]) !!}
 
-<ul class="small-block-grid-3">
-	<li>
-		<label>
-			{{ trans('app.name') }}
-			{!! Form::text('name', null, ['required']) !!}
-		</label>
-	</li>
-	<li>
-		<label>
-			{{ trans('app.price') }}
-			{!! Form::text('price', null, ['required']) !!}
-		</label>
-	</li>
-	<li>
-		<label>
-			{{ trans('template.preview_text') }}
-			{!! Form::text('text', trans('template.sample_text')) !!}
-		</label>
-	</li>
-</ul>
-
 <div class="row">
-	<div class="medium-4 columns">
-		<button type="submit" class="full">{{ trans('app.save') }}</button>
+	<div class="large-4 columns">
+		<a class="submit button framed full">
+			<i class="fa fa-check"></i>
+			{{ trans('app.save') }}
+		</a>
 	</div>
-	<div class="medium-8 columns">
-		<p class="image-upload {{ count($template->images) ? '' : 'new' }}"
+	<div class="large-8 columns">
+		<p class="framed image-upload {{ count($template->images) ? '' : 'new' }}"
 		 	data-id="{{ $template->id }}"
 			data-submit="{{ !count($template->images)
 			? action('ImageController@store')
@@ -69,64 +51,96 @@ var text = "{{ trans('template.sample_text') }}"
 </div>
 
 <div class="row">
-	<div class="medium-4 columns">
-		<div class="panel">
-			<label>
-				{!! Form::checkbox('multiline') !!}
-				{{ trans('template.allow_multiline') }}
-			</label>
+	<div class="large-4 columns">
+		<div class="form framed-white">
+			<ul class="tabs small-block-grid-2" data-tab>
+				<li class="tab-title active"><a href="#panel1">1</a></li>
+				<li class="tab-title"><a href="#panel2">2</a></li>
+			</ul>
+			<div class="tabs-content">
+				<div class="content active" id="panel1">
+					<label>
+						{!! Form::checkbox('multiline') !!}
+						{{ trans('template.allow_multiline') }}
+					</label>
 
-			<label>
-				{{ trans('template.font') }}
-				<select name="font_family">
-					@foreach($fonts as $font)
-					<option {{ @$template->drawConfig->font_family == $font ? 'selected' : '' }}>
-						{{ $font }}
-					</option>
-					@endforeach
-				</select>
-			</label>
-			
-			<div class="medium-block-grid-2">
-				<li>
 					<label>
-						{{ trans('template.font_size') }}
-						<input type="number" name="font_size" min="10"
-							value="{{ $template->drawConfig->font_size or 72 }}" />
+						{{ trans('template.font') }}
+						<select name="font_family">
+							@foreach($fonts as $font)
+							<option {{ @$template->drawConfig->font_family == $font ? 'selected' : '' }}>
+								{{ $font }}
+							</option>
+							@endforeach
+						</select>
 					</label>
-				</li>
-				<li>
-					<label>
-						{{ trans('template.font_color') }}
-						<input type="text" name="fill"
-							value="{{ $template->drawConfig->fill or '#000000' }}" />
-					</label>
-				</li>
+					
+					<div class="medium-block-grid-2">
+						<li>
+							<label>
+								{{ trans('template.font_size') }}
+								<input type="number" name="font_size" min="10"
+									value="{{ $template->drawConfig->font_size or 72 }}" />
+							</label>
+						</li>
+						<li>
+							<label>
+								{{ trans('template.font_color') }}
+								<input type="text" name="fill"
+									value="{{ $template->drawConfig->fill or '#000000' }}" />
+							</label>
+						</li>
+					</div>
+
+					<div>
+						{{ trans('template.rotation') }}
+						<div id="rotate" class="framed-white range-slider" data-slider
+							data-options="start: -90; end: 90; initial: {{ $template->drawConfig->rotate or 0 }};">
+							<span class="range-slider-handle" role="slider" tabindex="0"></span>
+							<span class="range-slider-active-segment"></span>
+						</div>
+					</div>
+
+					<div>
+						{{ trans('template.skew') }}
+						<div id="skew" class="framed-white range-slider" data-slider
+							data-options="start: -40; end: 40; initial: {{ $template->drawConfig->skewX or 0 }};">
+							<span class="range-slider-handle" role="slider" tabindex="0"></span>
+							<span class="range-slider-active-segment"></span>
+						</div>
+					</div>
+					{!! Form::hidden('draw_data') !!}
+				</div>
+				<div class="content" id="panel2">
+					<div>
+						<label>
+							{{ trans('app.name') }}
+							{!! Form::text('name', null, ['required', 'style' => 'font-weight: 700']) !!}
+						</label>
+					</div>
+					<div>
+						<label>
+							{{ trans('app.price') }}
+							{!! Form::text('price', null, ['required']) !!}
+						</label>
+					</div>
+					<div>
+						<label>
+							{{ trans('template.preview_text') }}
+							{!! Form::text('text', trans('template.sample_text')) !!}
+						</label>
+					</div>
+				</div>
 			</div>
-
-			<label>
-				{{ trans('template.rotation') }}
-				<input type="range" class="full" name="rotate" min="-180" max="180"
-					value="{{ $template->drawConfig->rotate or 0 }}" />
-			</label>
-
-			<label>
-				{{ trans('template.skew') }}
-				<input type="range" class="full" name="skewX" min="-40" max="40"
-					value="{{ $template->drawConfig->skewX or 0 }}" />
-			</label>
 		</div>
-		{!! Form::hidden('draw_data') !!}
 	</div>
 
-	<div class="medium-8 columns">
-
-		<div class="th full">
-			<canvas style="width: 100%;"></canvas>
+	<div class="large-8 columns">
+		<div class="framed-white">
+			<canvas></canvas>
 			<div id="image">
-				@include('image.show', ['image' => count($template->images) ? $template->images[0] : null])
+				@include('image.show', ['image' => count($template->images) ? $template->images[0] : null, 'original' => true])
 			</div>
-			<div id="image"></div>
 		</div>
 	</div>
 </div>

@@ -29,11 +29,12 @@ $(".button.buy").click(function(){
 })
 
 // Product tile actions
-var to
+
+var showTimeout; // Action overlay display timeout
 
 $(".product.th").bind("mouseenter click", function() {
-	if(to) clearTimeout(to)
-	to = setTimeout(function(me) {
+	if(showTimeout) clearTimeout(showTimeout)
+	showTimeout = setTimeout(function(me) {
 		return function() {
 			$(".product.th").removeClass("active")
 			$(me).addClass("active")
@@ -49,9 +50,25 @@ $(document).ready(function(){
 	$(".fadein").fadeIn(500).css("display", "block");
 })
 
-
+// Submit links
 $(".submit.button").click(function() {
 	$("form")[0].submit()
+})
+
+
+// Checkboxes
+$("input[type='checkbox']").each(function() {
+	
+	var checkedClass = "fa-check-square-o"
+	var uncheckedClass = "fa-square-o"
+	
+	$(this).after("<i class='fa fa-fw checkbox " + ($(this).is(":checked") ? checkedClass : uncheckedClass) +"'></i>")
+		.click(function() {
+			var isChecked = $(this).is(":checked")
+			$(this).next().toggleClass(checkedClass, isChecked)
+			$(this).next().toggleClass(uncheckedClass, !isChecked)
+		})
+		.hide()
 })
 
 

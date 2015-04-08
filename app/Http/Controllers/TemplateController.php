@@ -46,6 +46,6 @@ class TemplateController extends Controller {
 		$input = $request->only(['name', 'price', 'specs', 'multiline', 'draw_data']);
 		$template->fill($input);
 		$template->save();
-		return redirect(action('TemplateController@index'));
+		return redirect(action('TemplateController@edit', $template->id));
 	}
 }

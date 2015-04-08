@@ -11,10 +11,10 @@ class NotificationController extends Controller {
 	{
 		$products = Product::take(3)->get();
 		
-		$i = $request->input('id', 0);
-		if($i >= count($products)) $i = count($products) - 1;
+		$i = $request->input('id', 1);
+		if($i > count($products)) $i = count($products);
 		
-		$product = $products[$i];
+		$product = $products[$i - 1];
 		
 		$notifications  = \Auth::check() ? 7 : 0;
 
