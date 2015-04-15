@@ -18,11 +18,14 @@ class ImageController extends Controller {
 		$file = storage_path('images/' . $image->id);
 		
 		if(!is_null($request->input('original'))) {
-			return Intervention::make($file)->response('jpg');
+			$img = Intervention::cache(function($image) use ($file) {
+				return Intervention::make($file);
+			});
+			return $img->response('jpg');
 		}
 
 		$img = Intervention::cache(function($image) use ($file) {
-			return $image->make($file)->fit(600, 400);
+			return $image->make($file)->limitColors(8)->fit(600, 400);
 		}, 3600, true);
 		
 		return $img->response('jpg', 60);
@@ -52,7 +55,7 @@ class ImageController extends Controller {
 		$imageable = $imageableModel::find($request->input('imageable_id'));
 
 		if($imageableType == 'template') {
-			if($size[0] < 1000 || $size[1] < 600) {
+			if($size[0] < 400 || $size[1] < 300) {
 				throw new \Exception(trans('template.upload_too_small'), 1);
 			}
 		}
