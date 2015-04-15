@@ -7,6 +7,6 @@
 
   
 <link href='http://fonts.googleapis.com/css?family=Comfortaa:400,700&subset=latin,cyrillic,cyrillic-ext' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="{{ asset('css/foundation.css') }}">
-<link rel="stylesheet" href="{{ asset('css/font-awesome.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/css/foundation.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="{{ asset('css/app.css') }}">
