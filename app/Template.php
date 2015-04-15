@@ -5,10 +5,15 @@ use Illuminate\Database\Eloquent\Model;
 class Template extends Model {
 
 	public $timestamps = false;
+	
 	protected $guarded = ['id'];
 
 	public function products() {
 		return $this->hasMany('App\Product');
+	}
+	
+	public function vendor() {
+		return $this->belongsTo('App\Vendor');
 	}
 
 	public function images() {

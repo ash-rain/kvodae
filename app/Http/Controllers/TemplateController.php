@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use App\Template;
+use App\Vendor;
 
 class TemplateController extends Controller {
 
@@ -21,10 +22,9 @@ class TemplateController extends Controller {
 		return view('template.create');
 	}
 	
-	public function store(Request $request)
+	public function store(Request $request, Template $template)
 	{
 		$input = $request->only(['name', 'price']);
-		$template = new Template;
 		$template->fill($input);
 		$template->save();
 		return redirect(action('TemplateController@edit', $template->id));
@@ -38,12 +38,13 @@ class TemplateController extends Controller {
 	public function edit(Template $template)
 	{
 		$fonts = ['serif', 'sans-serif', 'Times New Roman', 'Arial'];
-		return view('template.edit', compact('template', 'fonts'));
+		$vendors = Vendor::select('name', 'id')->lists('name', 'id');
+		return view('template.edit', compact('template', 'fonts', 'vendors'));
 	}
 	
 	public function update(Request $request, Template $template)
 	{
-		$input = $request->only(['name', 'price', 'specs', 'multiline', 'draw_data']);
+		$input = $request->only(['name', 'price', 'specs', 'multiline', 'vendor_id', 'draw_data']);
 		$template->fill($input);
 		$template->save();
 		return redirect(action('TemplateController@edit', $template->id));

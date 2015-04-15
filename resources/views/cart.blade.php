@@ -92,9 +92,11 @@ $("[data-delete]").click(function() {
 @else
 <div class="text-center">
 	<h2>
-		<i class="fa fa-info-circle"></i>
+		<i class="fa fa-2x fa-info-circle"></i>
+		<br />
 		{{ trans('Your cart is empty') }}
 	</h2>
+	just like a life without beer
 </div>
 @endif
 @stop

@@ -13,7 +13,8 @@ class CreateInitialTables extends Migration {
 			$table->string('name');
 			$table->float('price')->unsigned();
 			$table->boolean('multiline')->nullable();
-			$table->string('specs', 200)->nullable();
+			$table->text('specs')->nullable();
+			$table->integer('vendor_id')->nullable();
 			$table->string('draw_data', 200)->default('{}');
 		});
 
@@ -40,6 +41,28 @@ class CreateInitialTables extends Migration {
 			$table->string('imageable_type');
 			$table->timestamps();
 		});
+
+		Schema::create('orders', function(Blueprint $table)
+		{
+			$table->increments('id');
+			$table->float('total')->unsigned();
+			$table->string('payment')->nullable();
+			$table->text('shipping_address')->nullable();
+			$table->boolean('processed')->nullable();
+			$table->boolean('shipped')->nullable();
+			$table->string('notes')->nullable();
+			$table->integer('user_id')->unsigned();
+			$table->timestamps();
+		});
+
+		Schema::create('vendors', function(Blueprint $table)
+		{
+			$table->increments('id');
+			$table->string('name');
+			$table->string('phone')->nullable();
+			$table->string('address')->nullable();
+			$table->text('notes')->nullable();
+		});
 	}
 
 	public function down()
@@ -47,6 +70,8 @@ class CreateInitialTables extends Migration {
 		Schema::drop('templates');
 		Schema::drop('products');
 		Schema::drop('images');
+		Schema::drop('orders');
+		Schema::drop('vendors');
 	}
 
 }

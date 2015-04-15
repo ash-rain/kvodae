@@ -54,9 +54,18 @@ var text = "{{ trans('template.sample_text') }}"
 	<div class="large-4 columns">
 		<div class="form framed-white">
 			<ul class="tabs small-block-grid-2" data-tab>
-				<li class="tab-title active"><a href="#panel1">1</a></li>
-				<li class="tab-title"><a href="#panel2">2</a></li>
+				<li class="tab-title active">
+					<a href="#panel1">
+					<i class="fa fa-2x fa-eye"></i>
+					</a>
+				</li>
+				<li class="tab-title">
+					<a href="#panel2">
+						<i class="fa fa-2x fa-edit"></i>
+					</a>
+				</li>
 			</ul>
+			<hr />
 			<div class="tabs-content">
 				<div class="content active" id="panel1">
 					<label>
@@ -130,13 +139,19 @@ var text = "{{ trans('template.sample_text') }}"
 							{!! Form::text('text', trans('template.sample_text')) !!}
 						</label>
 					</div>
+					<div>
+						<label>
+							{{ trans('template.vendor') }}
+							{!! Form::select('vendor_id', $vendors) !!}
+						</label>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<div class="large-8 columns">
-		<div class="framed-white">
+		<div class="framed-white" style="background: #fff;">
 			<canvas></canvas>
 			<div id="image">
 				@include('image.show', ['image' => count($template->images) ? $template->images[0] : null, 'original' => true])
