@@ -14,6 +14,8 @@ return [
 	'font_color' => 'Color',
 	'align' => 'Align',
 	'rotation' => 'Rotation',
-	'upload_too_small' => 'Minimum image dimensions: 1000x600',
-	'products' => 'Products from this template'
+	'skew' => 'Skew',
+	'upload_too_small' => 'Minimum image dimensions: ',
+	'products' => 'Products from this template',
+	'vendor' => 'Vendor',
 ];

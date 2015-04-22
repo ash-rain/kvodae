@@ -17,7 +17,6 @@
 @section('js')
 var drawConfig = {!! $template->draw_data !!}
 var text = "{{ trans('template.sample_text') }}"
-
 @stop
 
 @section('content')
@@ -52,7 +51,7 @@ var text = "{{ trans('template.sample_text') }}"
 
 <div class="row">
 	<div class="large-4 columns">
-		<div class="form framed-white">
+		<div class="form">
 			<ul class="tabs small-block-grid-2" data-tab>
 				<li class="tab-title active">
 					<a href="#panel1">
@@ -61,11 +60,11 @@ var text = "{{ trans('template.sample_text') }}"
 				</li>
 				<li class="tab-title">
 					<a href="#panel2">
-						<i class="fa fa-2x fa-edit"></i>
+						<i class="fa fa-2x fa-tags"></i>
 					</a>
 				</li>
 			</ul>
-			<hr />
+
 			<div class="tabs-content">
 				<div class="content active" id="panel1">
 					<label>
@@ -152,8 +151,8 @@ var text = "{{ trans('template.sample_text') }}"
 
 	<div class="large-8 columns">
 		<div class="framed-white" style="background: #fff;">
-			<canvas></canvas>
-			<div id="image">
+			<canvas style="display: none;"></canvas>
+			<div id="image" class="text-center">
 				@include('image.show', ['image' => count($template->images) ? $template->images[0] : null, 'original' => true])
 			</div>
 		</div>

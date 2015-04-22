@@ -11,7 +11,7 @@
 <div class="medium-6 medium-centered columns">
 	<h1>{{ trans('template.create') }}</h1>
 	
-	<div class="form framed-white">
+	<div class="form">
 		<label>
 			{{ trans('app.name') }}
 			<input type="text" name="name" value="{{ old('name') }}" required />

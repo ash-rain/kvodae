@@ -14,21 +14,24 @@ var token = "{{ csrf_token() }}"
 	
 	<div class="medium-8 columns">
 
-		<div class="welcome framed-white text-center" style="margin: 39px 0;">
+		<div class="welcome framed-white text-center">
 			<i class="fa fa-warning"></i>
 			The site is still under development.
 		</div>
 
-		<div class="welcome framed-white text-center">
-			<p>{!! nl2br(trans('welcome.intro')) !!}</p>
+		<div class="text-center">		
+			<h3 style="text-transform: none !important;">
+				{!! nl2br(trans('welcome.intro')) !!}
+			</h3>
 			
-			<a class="framed button" href="{{ action('Auth\AuthController@getIndex') }}">
+			<a class="framed button"
+				href="{{ action('Auth\AuthController@getIndex') }}">
 				<i class="fa fa-fw fa-sign-in"></i>
 				{{ trans('app.login') }}
 			</a>
 		</div>
 
-		<div class="welcome framed-white text-center">
+		<div class="welcome text-center">
 			<h3>{{ trans('welcome.we_offer') }}</h3>
 
 			<div class="row">

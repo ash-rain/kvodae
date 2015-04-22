@@ -1,7 +1,7 @@
 <?php
 
 return [
-	'intro' => "Microbrander allows you to create and sell custom advertising products from predefined templates.\nYou can have your own online store hosted on microbrander.com for free.",
+	'intro' => "Create and sell branded advertising products.\nStart your own online store hosted on microbrander.com for free <i>right now</i>!",
 	'getting_started' => 'Start in minutes:',
 	'we_offer' => 'We offer:',
 	'manufacture' => 'Manufacturing',

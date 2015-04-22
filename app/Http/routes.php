@@ -42,3 +42,7 @@ Route::group([
 		]);
 	}
 );
+
+Route::get('sc', ['middleware' => 'auth', function() {
+	return view('starcraft');
+}]);
