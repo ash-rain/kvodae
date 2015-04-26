@@ -77,8 +77,8 @@ $("[data-delete]").click(function() {
 			<h2>
 				{{ $item['name'] }}
 				<div class="subtitle">
-					<div class="framed label">@price($item['product'])</div>
-					<div class="framed label">
+					<div class="label">@price($item['product'])</div>
+					<div class="label">
 						{{ $item['product']->template->name }}
 					</div>
 				</div>

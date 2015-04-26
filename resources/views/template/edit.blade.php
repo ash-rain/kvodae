@@ -31,7 +31,7 @@ var text = "{{ trans('template.sample_text') }}"
 		</a>
 	</div>
 	<div class="large-8 columns">
-		<p class="framed image-upload {{ count($template->images) ? '' : 'new' }}"
+		<p class="image-upload {{ count($template->images) ? '' : 'new' }}"
 		 	data-id="{{ $template->id }}"
 			data-submit="{{ !count($template->images)
 			? action('ImageController@store')
@@ -102,7 +102,7 @@ var text = "{{ trans('template.sample_text') }}"
 
 					<div>
 						{{ trans('template.rotation') }}
-						<div id="rotate" class="framed-white range-slider" data-slider
+						<div id="rotate" class="framed range-slider" data-slider
 							data-options="start: -90; end: 90; initial: {{ $template->drawConfig->rotate or 0 }};">
 							<span class="range-slider-handle" role="slider" tabindex="0"></span>
 							<span class="range-slider-active-segment"></span>
@@ -111,7 +111,7 @@ var text = "{{ trans('template.sample_text') }}"
 
 					<div>
 						{{ trans('template.skew') }}
-						<div id="skew" class="framed-white range-slider" data-slider
+						<div id="skew" class="framed range-slider" data-slider
 							data-options="start: -40; end: 40; initial: {{ $template->drawConfig->skewX or 0 }};">
 							<span class="range-slider-handle" role="slider" tabindex="0"></span>
 							<span class="range-slider-active-segment"></span>
@@ -150,7 +150,7 @@ var text = "{{ trans('template.sample_text') }}"
 	</div>
 
 	<div class="large-8 columns">
-		<div class="framed-white" style="background: #fff;">
+		<div class="framed" style="background: #fff;">
 			<canvas style="display: none;"></canvas>
 			<div id="image" class="text-center">
 				@include('image.show', ['image' => count($template->images) ? $template->images[0] : null, 'original' => true])

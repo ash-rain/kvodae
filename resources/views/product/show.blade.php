@@ -11,7 +11,7 @@ var token = "{{ csrf_token() }}"
 @if(count($product->images))
 <div class="medium-6 columns text-right" id="images">
 	@foreach($product->images as $image)
-	<a class="th framed-white" data-reveal-id="image-{{ $image->id }}">
+	<a class="th" data-reveal-id="image-{{ $image->id }}">
 		@include('image.show', compact('image'))
 	</a>
 	<div id="image-{{ $image->id }}" data-reveal role="dialog"

@@ -14,10 +14,14 @@ input, textarea, select {
 .fadein {
   display: none; }
 
-h1, h2, h3, .header, .top-bar a, .filter button {
+.top-bar a, .filter button {
   text-transform: lowercase !important;
   color: #FFFFFF;
   text-shadow: 1px 1px 2px black; }
+
+h1, h2, h3 {
+  text-transform: lowercase;
+  font-weight: 300; }
 
 .subtitle {
   font-size: .5em;

@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="medium-6 columns">
-	<div class="th framed-white">
+	<div class="th framed">
 	@include('image.show', ['image' => $template->images[0]])
 	</div>
 </div>
@@ -16,6 +16,25 @@
 		<i class="fa fa-2x fa-fw fa-lightbulb-o"></i>
 		{{ trans('template.customize') }}
 	</a>
+	
+	@if(Auth::user()->isAdmin)
+	<div class="row collapse">
+		<div class="small-6 columns">
+			<a class="full button"
+				href="{{ action('TemplateController@edit', $template->id) }}">
+				<i class="fa fa-2x fa-fw fa-pencil"></i>
+				{{ trans('app.edit') }}
+			</a>
+		</div>
+		<div class="small-6 columns">
+			<a class="full button"
+				href="{{ action('TemplateController@destroy', $template->id) }}">
+				<i class="fa fa-2x fa-fw fa-remove"></i>
+				{{ trans('app.delete') }}
+			</a>
+		</div>
+	</div>
+	@endif
 
 	<h1>{{ $template->name }}</h1>
 	

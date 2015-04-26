@@ -1,22 +1,26 @@
 var canvas = $("canvas")[0]
 var zoom = 1
 
-$(document).ready(function(){
-	var img = $("#image img")
-	if(img[0].complete) canvasInit()
-	else img.load(canvasInit)
+$(document).ready(function() {
+	setTimeout(setup, 100)
 })
 
+function setup() {
+	var img = $("#image img")
+	console.log(img[0].complete)
+	if(img[0].complete) canvasInit()
+	else img.load(canvasInit)
+}
 
 function canvasInit() {
 	var img = $("#image img")
 	$(canvas).show()
 	if(img.data("width") && img[0].naturalWidth) {
-		var h = (canvas.width / img.data("width")) * img.data("height");
-		zoom = canvas.width / img.data("width")
+		var h = ($(canvas).width() / img.data("width")) * img.data("height");
+		zoom = $(canvas).width() / img.data("width")
 		$(canvas).height(h)
 		$("#image").hide()
-		//drawText()
+		drawText()
 	}
 }
 
@@ -24,7 +28,7 @@ $("input[name='text']").bind("keyup change", function() {
 	text = $(this).val()
 	drawText()
 })
-$("select[name='font']").bind("keyup change", function() {
+$("select[name='<font_family></font_family>']").change(function() {
 	drawConfig.font = $(this).val()
 	drawText()
 })
@@ -35,19 +39,16 @@ $("input[name='font_size']").bind("keyup change", function() {
 $("input[name='fill']").minicolors({
 	position: "top left",
 	change: function(hex) {
-		drawConfig.fill = hex
 		drawText()
 	}
 })
-
-$("#rotate").on('change.fndtn.slider', function(){
+$("#rotate").on("change.fndtn.slider", function(){
 	if(drawConfig) {
 		drawConfig.rotate = $(this).attr("data-slider")
 		drawText()
 	}
 })
-
-$("#skew").on('change.fndtn.slider', function(){
+$("#skew").on("change.fndtn.slider", function(){
 	if(drawConfig) {
 		drawConfig.skewX = $(this).attr("data-slider")
 		drawText()
@@ -75,7 +76,7 @@ $(document).mousemove(function(e) {
 }).mouseup(function(){ dragging = false })
 
 function drawText() {
-	if(!canvas || !zoom) return;
+	if(!canvas || !zoom) return
 	
 	paper.setup(canvas);
 	paper.view.zoom = zoom
@@ -93,7 +94,7 @@ function drawText() {
 		shadowOffset: new paper.Point(-1)
 	}
 	if(drawConfig.skewX || drawConfig.skewY)
-		t.skew(parseInt(drawConfig.skewX) || 0, parseInt(drawConfig.skewY) || 0);
+		t.skew(parseInt(drawConfig.skewX) || 0, parseInt(drawConfig.skewY) || 0)
 	if(drawConfig.rotate)
 		t.rotate(drawConfig.rotate)
 	if(drawConfig.x && drawConfig.y)
@@ -101,14 +102,12 @@ function drawText() {
 	paper.view.draw()
 
 	$("input[name='draw_data']").val(JSON.stringify(drawConfig))
-
 }
 
 $(".image-upload").each(function() {
 	var me = $(this)
 	$(this).find("input[type='file']").change(function(event) {
 		var files = event.target.files
-        	console.log(files);
         	var data = new FormData();
         	data.append("file", files[0])
 		data.append("imageable_id", me.data("id"))
@@ -124,12 +123,11 @@ $(".image-upload").each(function() {
 			processData: false,
 			contentType: false,
 			success: function(data) {
-				console.log(data);
-				
+				$(canvas).hide()
 				if(me.is(".new")) location.reload()
 				else {
 					$("#image").html(data)
-					canvasInit()
+					setup()
 				}
 			},
 			error: function(jqXHR, textStatus, errorThrown) {

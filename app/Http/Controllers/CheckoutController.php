@@ -60,6 +60,11 @@ class CheckoutController extends Controller
 
 	public function getIndex()
 	{
+		return view('checkout.confirm');
+	}
+	
+	public function postIndex()
+	{
 		$payer = PayPal::Payer();
 		$payer->setPaymentMethod("paypal");
 

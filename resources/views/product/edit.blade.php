@@ -34,13 +34,13 @@ var postUrl = "{{ count($product->images)
 				</a>
 			</div>
 			<div class="small-4 columns">
-				<a class="submit button full framed"
+				<a class="submit button full"
 					href="{{ action('ProductController@show', $product->id) }}">
 					<i class="fa fa-eye"></i>
 				</a>
 			</div>
 		</div>
-		<div class="form framed-white">
+		<div class="form">
 			<div>
 				@if($product->template->multiline)
 				{!! Form::textarea('text', null, ['required', 'rows' => 4]) !!}
@@ -84,12 +84,10 @@ var postUrl = "{{ count($product->images)
 	</div>
 
 	<div class="medium-8 columns">
-		<div class="framed-white" style="line-height: 0">
-			<div id="image" class="{{ count($product->images) ? '' : 'new' }}">
-				@include('image.show', ['image' => $product->template->images[0], 'original' => true])
-			</div>
-			<canvas></canvas>
+		<div id="image" class="{{ count($product->images) ? '' : 'new' }}">
+			@include('image.show', ['image' => $product->template->images[0], 'original' => true])
 		</div>
+		<canvas></canvas>
 	</div>
 
 </div>

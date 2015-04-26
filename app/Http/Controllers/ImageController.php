@@ -23,13 +23,8 @@ class ImageController extends Controller {
 			return Intervention::make($file)->response('jpg');
 		}
 
-		$img = Intervention::cache(function($intervention) use ($file, $image) {
-			$img = $intervention->make($file);
-			if($image->imageable instanceof Product) {
-				$img->limitColors(8);
-				$img->fit(320, 240);
-			}
-			return $img;
+		$img = Intervention::cache(function($intervention) use ($file) {
+			return $intervention->make($file);
 		}, 3600, true);
 		
 		return $img->response('jpg', 60);
@@ -52,11 +47,6 @@ class ImageController extends Controller {
 
 	public function update(Image $image, Request $request)
 	{
-		if(!$request->hasFile('file')) {
-			dd($request);
-			throw new Exception('No file attachment');
-		}
-
 		if(!isset($image->id)) {
 			$image->save();
 		}

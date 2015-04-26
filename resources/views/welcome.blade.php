@@ -14,22 +14,51 @@ var token = "{{ csrf_token() }}"
 	
 	<div class="medium-8 columns">
 
-		<div class="welcome framed-white text-center">
+		<div class="welcome framed text-center">
 			<i class="fa fa-warning"></i>
 			The site is still under development.
 		</div>
 
 		<div class="text-center">		
-			<h3 style="text-transform: none !important;">
-				{!! nl2br(trans('welcome.intro')) !!}
-			</h3>
+			<p style="margin: 3rem 0; line-height: 1.7;">{!! nl2br(trans('welcome.intro')) !!}</p>
 			
-			<a class="framed button"
-				href="{{ action('Auth\AuthController@getIndex') }}">
-				<i class="fa fa-fw fa-sign-in"></i>
-				{{ trans('app.login') }}
-			</a>
 		</div>
+
+		<ul class="small-block-grid-2">
+			<li>
+				<ul class="pricing-table">
+					<li class="title">Free</li>
+					<li class="price">0€</li>
+					<li class="description">The best choice for small campaigns</li>
+					<li class="bullet-item">Set Custom Price</li>
+					<li class="bullet-item">10% Withdrawal Fee</li>
+					<li class="bullet-item">1 Online Shop</li>
+					<li class="bullet-item">No Gifts</li>
+					<li class="bullet-item">No Discounts</li>
+					<li class="cta-button">
+						<a class="button"
+							href="{{ action('Auth\AuthController@getIndex') }}">
+							<i class="fa fa-fw fa-sign-in"></i>
+							{{ trans('app.login') }}
+						</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<ul class="pricing-table">
+					<li class="title">Agency</li>
+					<li class="price">100€/month</li>
+					<li class="description">Advanced tools to manage your sales</li>
+					<li class="bullet-item">Detailed order tracking</li>
+					<li class="bullet-item">6% Withdrawal Fee</li>
+					<li class="bullet-item">Custom Online Shop(s)</li>
+					<li class="bullet-item">Send Gifts via E-mail</li>
+					<li class="bullet-item">Discounts</li>
+					<li class="bullet-item">Dedicated Support</li>
+					<li class="description">Coming Soon</li>
+				</ul>
+			</li>
+		</ul>
 
 		<div class="welcome text-center">
 			<h3>{{ trans('welcome.we_offer') }}</h3>

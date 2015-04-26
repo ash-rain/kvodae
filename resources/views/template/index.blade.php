@@ -8,7 +8,7 @@
 @foreach($templates as $template)
 	<li>
 		<a href="{{ action('TemplateController@show', $template->id) }}">
-		<div class="product th framed"
+		<div class="product th"
 			style="background-image: url(/images/{{ $template->images[0]->id }})">
 			<div class="info row collapse trans-opacity">
 				<div class="small-12 columns">
