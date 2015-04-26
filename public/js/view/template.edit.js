@@ -39,6 +39,7 @@ $("input[name='font_size']").bind("keyup change", function() {
 $("input[name='fill']").minicolors({
 	position: "top left",
 	change: function(hex) {
+		drawConfig.fill = hex
 		drawText()
 	}
 })

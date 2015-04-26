@@ -7,7 +7,6 @@ $(document).ready(function() {
 
 function setup() {
 	var img = $("#image img")
-	console.log(img[0].complete)
 	if(img[0].complete) canvasInit()
 	else img.load(canvasInit)
 }
@@ -39,6 +38,7 @@ $("input[name='font_size']").bind("keyup change", function() {
 $("input[name='fill']").minicolors({
 	position: "top left",
 	change: function(hex) {
+		drawConfig.fill = hex
 		drawText()
 	}
 })
