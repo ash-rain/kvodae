@@ -27,7 +27,7 @@ $("input[name='text']").bind("keyup change", function() {
 	text = $(this).val()
 	drawText()
 })
-$("select[name='<font_family></font_family>']").change(function() {
+$("select[name='font_family']").change(function() {
 	drawConfig.font = $(this).val()
 	drawText()
 })
